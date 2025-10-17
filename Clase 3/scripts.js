@@ -85,23 +85,23 @@ const extractJobText  = (article) => {
 };
 
 //Comparo los valores
-const compare = (article, filters) => {
+const filter = (article, filters) => {
     const { detail, description } =  extractJobText(article); 
     console.log(Object.values(filters));
-    if(!activeFiltersValidation(filters)) return true;
+    if(!activeFiltersValidation(filters)) return false;
 
-    if(filters.technology && !description.includes(filters.technology.toLowerCase())) return false;
-    if(filters.modality && !description.includes(filters.modality.toLowerCase())) return false;
-    if(filters.location && !detail.includes(filters.location.toLowerCase())) return false;
+    if(filters.technology && !description.includes(filters.technology.toLowerCase())) return true;
+    if(filters.modality && !description.includes(filters.modality.toLowerCase())) return true;
+    if(filters.location && !detail.includes(filters.location.toLowerCase())) return true;
 
-    return true;
+    return false;
 };
 
 //Activo o escondo los articles
-const toggleArticle = (article, show) => {
-    console.log(article);
-    article.style.display = show ? 'flex': 'none'; //TO DO: Arreglar para que esconda las cards con una clase
-}
+// const toggleArticle = (article, show) => {
+//     console.log(article);
+//     article.style.display = show ? 'flex': 'none'; //TO DO: Arreglar para que esconda las cards con una clase
+// }
 
 //Aplico los filtros
 const applyFilters = () => {
@@ -109,8 +109,8 @@ const applyFilters = () => {
     const articles = getJobsArticles();
 
     articles.forEach( article => {
-        const show = compare(article, filters);
-        toggleArticle(article, show);
+        const isFiltered = filter(article, filters);
+        article.classList.toggle('filtered', isFiltered);
     });
 }
 
