@@ -14,29 +14,7 @@ jobListingDiv?.addEventListener('click', (event) => {
     }
 })
 
-fetch('./data.json')
-    .then((response) => {
-        return response.json();
-})
-    .then((jobs) => {
-        jobs.forEach(job => {
-            const newArticle = document.createElement('article');
-            newArticle.className = 'job-card';
-            newArticle.dataset.modalidad = job.data.modalidad;
-            newArticle.dataset.nivel = job.data.nivel;
-            newArticle.dataset.technology = job.data.technology;
-            
-            newArticle.innerHTML = `
-                <div>
-                    <h3>${job.titulo}</h3>
-                    <p><small class="job-list-details">${job.empresa} | ${job.ubicacion}</small></p>
-                    <p class="job-list-paragraph">${job.descripcion}</p>
-                </div>
-                <button id="btn-1" class="btn-apply">Aplicar</button>
-            `;
-            jobListingDiv.appendChild(newArticle);
-        });
-    });
+
 //-------------------------------
 // Evento onChange para los filtros en las ofertas de trabajo
 // const locationFilter = document.querySelector('#location-filter');
@@ -60,93 +38,4 @@ fetch('./data.json')
 //     });
 // });
 
-// Consigo todos los elementos de filtrado
-const getFilters = () => ({
-    technology: document.querySelector('#technology-filter'),
-    location: document.querySelector('#location-filter'),
-    level: document.querySelector('#level-filter'),
-    contract: document.querySelector('#contract-filter')
-});
 
-//Armo un objeto con los values de los filtros activos
-const getActiveFilters = () => {
-    const filters = getFilters();
-    toggleNullFilterOptions(filters);
-    return {
-        technology: filters.technology.value,
-        location: filters.location.value,
-        level: filters.level.value,
-        contract: filters.contract.value,
-    }
-};
-
-const activeFiltersValidation = (activeFilters) => {
-    const values = Object.values(activeFilters);
-    return values.some(value => value.trim() !== '');
-};
-
-const toggleNullFilterOptions = (filters) => {
-    Object.values(filters).forEach( filter => {
-        const firtsOption = filter.querySelector('option:first-child');
-        if(filter.value.trim() !== '') {
-            firtsOption.disabled = false;
-        } else firtsOption.disabled = true;
-        // console.log(filter + " | " + firtsOption.disabled);
-    });
-}; 
-
-//Consigo todos los articles de los trabajos
-const getJobsArticles = () => document.querySelectorAll('.job-card');
-
-//Consigo los textos de los subtittulos y los parrafos
-const extractJobText  = (article) => {
-    const details = article.querySelector('.job-list-details');
-    const paragraph = article.querySelector('.job-list-paragraph');
-
-    return {
-        detail: details ? details.textContent.trim().toLowerCase() : '', 
-        description: paragraph ? paragraph.textContent.trim().toLowerCase() : '' 
-    };
-};
-
-//Comparo los valores
-const filter = (article, filters) => {
-    const { modalidad, nivel, technology} = article.dataset;
-    // const { detail, description } =  extractJobText(article); 
-    console.log(Object.values(filters));
-    if(!activeFiltersValidation(filters)) return false;
-
-    if(filters.technology && !technology.includes(filters.technology.toLowerCase())) return true;
-    if(filters.level && !nivel.includes(filters.level.toLowerCase())) return true;
-    if(filters.location && !modalidad.includes(filters.location.toLowerCase())) return true;
-
-    return false;
-};
-
-//Activo o escondo los articles
-// const toggleArticle = (article, show) => {
-//     console.log(article);
-//     article.style.display = show ? 'flex': 'none'; //TO DO: Arreglar para que esconda las cards con una clase
-// }
-
-//Aplico los filtros
-const applyFilters = () => {
-    const filters = getActiveFilters();
-    const articles = getJobsArticles();
-
-    articles.forEach( article => {
-        const isFiltered = filter(article, filters);
-        article.classList.toggle('filtered', isFiltered);
-    });
-}
-
-//Añado los eventos de los filtros
-const activateFilters = () => {
-    const filters = getFilters();
-    console.log('Activando filtros . . .');
-    Object.values(filters).forEach( filter => {
-        filter.addEventListener('change', applyFilters);
-    });
-}
-
-activateFilters();
