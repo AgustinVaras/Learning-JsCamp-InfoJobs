@@ -1,3 +1,5 @@
+const jobListingDiv = document.querySelector('.job-listing');
+
 fetch('./data.json')
     .then((response) => {
         return response.json();

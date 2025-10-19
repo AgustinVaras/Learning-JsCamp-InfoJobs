@@ -1,3 +1,9 @@
+import { state } from './config.js'
+
+state.count++
+
+console.log(state)
+
 // Consigo todos los elementos de filtrado
 const getFilters = () => ({
     technology: document.querySelector('#technology-filter'),
