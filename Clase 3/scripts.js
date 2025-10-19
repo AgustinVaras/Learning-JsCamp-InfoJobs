@@ -1,4 +1,13 @@
 
+//Fetch data from JSON file
+fetch('./data.json')
+    .then((response) => {
+        return response.json();
+})
+    .then((json) => {
+        console.log(json);
+    });
+
 // Evento onClick para el  botón  "Aplicar" en las ofertas de trabajo
 const jobListingDiv = document.querySelector('.job-listing');
 
