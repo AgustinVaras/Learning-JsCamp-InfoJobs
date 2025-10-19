@@ -1,19 +1,12 @@
 
 //Fetch data from JSON file
-fetch('./data.json')
-    .then((response) => {
-        return response.json();
-})
-    .then((json) => {
-        console.log(json);
-    });
 
 // Evento onClick para el  botón  "Aplicar" en las ofertas de trabajo
 const jobListingDiv = document.querySelector('.job-listing');
 
 jobListingDiv?.addEventListener('click', (event) => {
     const target = event.target;
-
+    
     if (target.classList.contains('btn-apply')) {
         target.classList.add('is-applied');
         target.textContent = '¡Aplicado!';
@@ -21,6 +14,29 @@ jobListingDiv?.addEventListener('click', (event) => {
     }
 })
 
+fetch('./data.json')
+    .then((response) => {
+        return response.json();
+})
+    .then((jobs) => {
+        jobs.forEach(job => {
+            const newArticle = document.createElement('article');
+            newArticle.className = 'job-card';
+            newArticle.dataset.modalidad = job.data.modalidad;
+            newArticle.dataset.nivel = job.data.nivel;
+            newArticle.dataset.technology = job.data.technology;
+            
+            newArticle.innerHTML = `
+                <div>
+                    <h3>${job.titulo}</h3>
+                    <p><small class="job-list-details">${job.empresa} | ${job.ubicacion}</small></p>
+                    <p class="job-list-paragraph">${job.descripcion}</p>
+                </div>
+                <button id="btn-1" class="btn-apply">Aplicar</button>
+            `;
+            jobListingDiv.appendChild(newArticle);
+        });
+    });
 //-------------------------------
 // Evento onChange para los filtros en las ofertas de trabajo
 // const locationFilter = document.querySelector('#location-filter');
