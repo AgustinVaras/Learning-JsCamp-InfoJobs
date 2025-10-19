@@ -64,8 +64,8 @@ fetch('./data.json')
 const getFilters = () => ({
     technology: document.querySelector('#technology-filter'),
     location: document.querySelector('#location-filter'),
-    modality: document.querySelector('#modality-filter'),
-    experience: document.querySelector('#experience-filter')
+    level: document.querySelector('#level-filter'),
+    contract: document.querySelector('#contract-filter')
 });
 
 //Armo un objeto con los values de los filtros activos
@@ -75,8 +75,8 @@ const getActiveFilters = () => {
     return {
         technology: filters.technology.value,
         location: filters.location.value,
-        modality: filters.modality.value,
-        experience: filters.experience.value,
+        level: filters.level.value,
+        contract: filters.contract.value,
     }
 };
 
@@ -111,13 +111,14 @@ const extractJobText  = (article) => {
 
 //Comparo los valores
 const filter = (article, filters) => {
-    const { detail, description } =  extractJobText(article); 
+    const { modalidad, nivel, technology} = article.dataset;
+    // const { detail, description } =  extractJobText(article); 
     console.log(Object.values(filters));
     if(!activeFiltersValidation(filters)) return false;
 
-    if(filters.technology && !description.includes(filters.technology.toLowerCase())) return true;
-    if(filters.modality && !description.includes(filters.modality.toLowerCase())) return true;
-    if(filters.location && !detail.includes(filters.location.toLowerCase())) return true;
+    if(filters.technology && !technology.includes(filters.technology.toLowerCase())) return true;
+    if(filters.level && !nivel.includes(filters.level.toLowerCase())) return true;
+    if(filters.location && !modalidad.includes(filters.location.toLowerCase())) return true;
 
     return false;
 };
