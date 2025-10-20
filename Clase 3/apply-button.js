@@ -1,3 +1,7 @@
+import { state } from './config.js'
+
+state.count++
+
 // Evento onClick para el  botón  "Aplicar" en las ofertas de trabajo
 const jobListingDiv = document.querySelector('.job-listing');
 
