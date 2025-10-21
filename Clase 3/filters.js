@@ -35,7 +35,6 @@ const toggleNullFilterOptions = (filters) => {
         if(filter.value.trim() !== '') {
             firtsOption.disabled = false;
         } else firtsOption.disabled = true;
-        // console.log(filter + " | " + firtsOption.disabled);
     });
 }; 
 
@@ -56,7 +55,6 @@ const extractJobText  = (article) => {
 //Comparo los valores
 const filter = (article, filters) => {
     const { modalidad, nivel, technology} = article.dataset;
-    // const { detail, description } =  extractJobText(article); 
     console.log(Object.values(filters));
     if(!activeFiltersValidation(filters)) return false;
 
@@ -67,11 +65,6 @@ const filter = (article, filters) => {
     return false;
 };
 
-//Activo o escondo los articles
-// const toggleArticle = (article, show) => {
-//     console.log(article);
-//     article.style.display = show ? 'flex': 'none'; //TO DO: Arreglar para que esconda las cards con una clase
-// }
 
 //Aplico los filtros
 const applyFilters = () => {

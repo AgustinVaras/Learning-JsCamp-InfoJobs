@@ -35,7 +35,6 @@ const search = () => {
     const jobs = getJobCards();
     jobs.forEach( job => {
         const filtered = !isFiltered(job);
-        // console.log(job + '|' + filtered);
         job.classList.toggle('filtered', filtered);
     });
 };
