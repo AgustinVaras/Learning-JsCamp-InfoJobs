@@ -1,3 +1,9 @@
+import { state } from './config.js'
+
+state.count++
+
+console.log(state)
+
 class DevJobsAvatar extends HTMLElement {
     constructor() {
         super(); 
@@ -7,7 +13,16 @@ class DevJobsAvatar extends HTMLElement {
 
     render() {
         this.shadowRoot.innerHTML = `
-
+            <img 
+                src="https://unavatar.io/google.com"
+                alt="Avatar de usuario"
+                class="avatar"
+                style="
+                    width: 40px;
+                    height: 40px;
+                    border-radius: 9999px;
+                "
+            />
         `;
     }
 

@@ -20,6 +20,6 @@ fetch('./data.json')
                 </div>
                 <button id="btn-1" class="btn-apply">Aplicar</button>
             `;
-            jobListingDiv.appendChild(newArticle);
+            jobListingDiv?.appendChild(newArticle);
         });
     });

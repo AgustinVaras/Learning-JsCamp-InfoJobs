@@ -82,7 +82,7 @@ const activateFilters = () => {
     const filters = getFilters();
     console.log('Activando filtros . . .');
     Object.values(filters).forEach( filter => {
-        filter.addEventListener('change', applyFilters);
+        filter?.addEventListener('change', applyFilters);
     });
 }
 
