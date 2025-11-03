@@ -6,9 +6,13 @@ class DevJobsAvatar extends HTMLElement {
     }
 
     render() {
-        this.innerHTML = `
+        this.shadowRoot.innerHTML = `
 
         `;
+    }
+
+    connectedCallback() {
+        this.render();
     }
 };
 
