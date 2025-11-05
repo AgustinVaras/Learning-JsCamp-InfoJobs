@@ -14,7 +14,14 @@
         </script>
         <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
         <script type="text/babel">
+            // Elemento de React
             const titulo = <h1 style={{ color: "#09f"}}>Hola, DevJobs!</h1>;
+
+            // Componente de React
+            function Saludo({ nombre }) {
+                return <h1 style={{ color: "#09f"}}>Hola, {nombre}!</h1>;
+            }
+
             const rootEl = document.querySelector('#root');
             const root = ReactDOM.createRoot(rootEl);
             root.render(titulo);
