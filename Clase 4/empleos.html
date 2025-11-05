@@ -6,15 +6,18 @@
         <link rel="stylesheet" href="./styles.css" />
         <script type="module" src="./main.js"></script> 
         <script type="module">
-            import React from 'https://esm.sh/react?dev';
-            import ReactDOM from 'https://esm.sh/react-dom/client?dev';
+            import React from "https://esm.sh/react?dev";
+            import ReactDOM from "https://esm.sh/react-dom/client?dev";
 
-            Window.React = React;
-            Window.ReactDOM = ReactDOM;
+            window.React = React;
+            window.ReactDOM = ReactDOM;
         </script>
         <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
         <script type="text/babel">
-
+            const titulo = <h1 style={{ color: "#09f"}}>Hola, DevJobs!</h1>;
+            const rootEl = document.querySelector('#root');
+            const root = ReactDOM.createRoot(rootEl);
+            root.render(titulo);
         </script>
     </head>
 
@@ -47,7 +50,8 @@
         </header>
         <main class="search-page">
             <section class="search-bar">
-                <h1>Encuentra tu próximo trabajo</h1>
+                <!-- <h1>Encuentra tu próximo trabajo</h1> -->
+                <div id="root"></div>
                 <p>Explora miles de oportunidades en el sector técnologico.</p>
                 <form role="search">
                     <div class="input-wrapper">
