@@ -22,9 +22,19 @@
                 return <h1 style={{ color: "#09f"}}>Hola, {nombre}!</h1>;
             }
 
+            function App() {
+                return (
+                    <div>
+                        <Saludo nombre="Midudev" />
+                        <Saludo nombre="Ana" />
+                        <Saludo nombre="Luis" />
+                    </div>
+                );
+            }
+
             const rootEl = document.querySelector('#root');
             const root = ReactDOM.createRoot(rootEl);
-            root.render(titulo);
+            root.render(<App />);
         </script>
     </head>
 
