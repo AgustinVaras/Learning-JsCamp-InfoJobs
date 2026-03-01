@@ -1,33 +1,52 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+//React
+import { useState } from "react";
+
+//Componentes
+import Header from "./components/Header";
+import SearchBar from "./components/SearchBar";
+import JobListing from "./components/JobListing";
+import JobsPagination from "./components/JobsPagination";
+
+//Data
+import jobsData from "./data/data.json";
 
 function App() {
-  const [count, setCount] = useState(0)
+
+  const [searchTerm, setSearchTerm] = useState("");
+
+//Valido si el trabajo debe ser filtrado o no
+const isFiltered = (job) => {
+    const search = searchTerm.toLowerCase();
+    const title = job.titulo.toLowerCase();
+
+    if(!search.trim()) return true;
+
+    return title.includes(search) ? true : false
+}; 
+
+  const filteredJobs = jobsData.filter((job) => {
+    return isFiltered(job);
+  });
 
   return (
     <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+        <main className="search-page">
+            {/* HEADER */}
+            <Header />
+            {/* SEARCH BAR */}
+            <SearchBar onSearchChange={setSearchTerm}/>
+            {/* SEARCH RESULTS */}
+            <section className="search-results">
+              <h2 id="search-title">Resultados de búsqueda</h2>
+              {/* JOB LISTINGS */}
+              <JobListing jobs={filteredJobs}/>
+            </section>  
+            {/* PAGINATION */}
+            <JobsPagination />
+        </main>
+        <footer>
+            <small>&copy; 2025 DevJobs. Todos los derechos reservados</small>
+        </footer>
     </>
   )
 }
