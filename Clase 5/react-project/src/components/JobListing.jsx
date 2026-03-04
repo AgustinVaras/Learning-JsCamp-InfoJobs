@@ -1,6 +1,6 @@
-import JobCard from "./JobCard.jsx";
+import { JobCard } from "./JobCard.jsx";
 
-function JobsListing ({ jobs }) {
+export function JobsListing ({ jobs }) {
     return (
         <div className="job-listing">
             {jobs.map((job) => (

@@ -1,4 +1,4 @@
-function JobDetails() {
+export function JobDetails() {
     return (
         <body>
             <header>

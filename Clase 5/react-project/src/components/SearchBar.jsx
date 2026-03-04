@@ -1,4 +1,4 @@
-function SearchBar({ onSearchChange }) {
+export function SearchBar({ onSearchChange }) {
     
     const handleChange = (event) => {
         onSearchChange(event.target.value);

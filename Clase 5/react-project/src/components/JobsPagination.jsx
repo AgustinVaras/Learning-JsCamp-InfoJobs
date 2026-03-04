@@ -1,4 +1,4 @@
-function JobsPagination() {
+export function JobsPagination() {
     return (
         <nav class="pagination">
             <div class="pagination-anchors">

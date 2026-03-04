@@ -1,4 +1,4 @@
-function Jobs() {
+export function Jobs() {
     return (
         <body>
             <header>

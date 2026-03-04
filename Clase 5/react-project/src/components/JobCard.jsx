@@ -1,4 +1,4 @@
-function JobCard ({ job }) {
+export function JobCard ({ job }) {
     return (
         <article className="job-card">
             <div>

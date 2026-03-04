@@ -1,5 +1,6 @@
-import JobListing from "./JobListing.jsx";
-function JobSearchResults() { 
+import { JobListing } from "./JobListing.jsx";
+
+export function JobSearchResults() { 
     return (
         <section class="search-results">
             <h2 id="search-title">Resultados de búsqueda</h2>
