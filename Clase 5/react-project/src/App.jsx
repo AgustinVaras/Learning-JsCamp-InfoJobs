@@ -2,9 +2,9 @@
 import { useState } from "react";
 
 //Componentes
-import { Header } from "./components/Header.jxs";
+import { Header } from "./components/Header.jsx";
 import { SearchBar } from "./components/SearchBar.jsx";
-import { JobListing } from "./components/JobListing.jsx";
+import { JobsListing } from "./components/JobListing.jsx";
 import { JobsPagination } from "./components/JobsPagination.jsx";
 
 //Data
@@ -39,7 +39,7 @@ const isFiltered = (job) => {
             <section className="search-results">
               <h2 id="search-title">Resultados de búsqueda</h2>
               {/* JOB LISTINGS */}
-              <JobListing jobs={filteredJobs}/>
+              <JobsListing jobs={filteredJobs}/>
             </section>  
             {/* PAGINATION */}
             <JobsPagination />

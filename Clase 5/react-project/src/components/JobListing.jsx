@@ -10,4 +10,3 @@ export function JobsListing ({ jobs }) {
     );
 }
 
-export default JobsListing;
