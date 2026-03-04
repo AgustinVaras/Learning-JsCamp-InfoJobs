@@ -1,8 +1,17 @@
-export function JobsPagination() {
+export function JobsPagination( { currentPage = 1, totalPages = 1 }){
+    const pages = Array.from({ length: totalPages }, (_, i) => i + 1);
+
+    const isFirstPage = currentPage === 1;
+    const isLastPage = currentPage === totalPages;
+
+    const stylePrevBtn = isFirstPage ? { pointerEvents: 'none', opacity: 0.5 } : {};
+    const styleNextBtn = isLastPage ? { pointerEvents: 'none', opacity: 0.5 } : {};
+
     return (
         <nav className="pagination">
             <div className="pagination-anchors">
-                <a href="">
+                
+                <a href="" style={stylePrevBtn}>
                     <svg 
                         width="16" 
                         height="16" 
@@ -16,12 +25,13 @@ export function JobsPagination() {
                         <path d="M15 6l-6 6l6 6" />
                     </svg>
                 </a>
-                <a href="" className="is-active">1</a>
-                <a href="">2</a>
-                <a href="">3</a>
-                <a href="">4</a>
-                <a href="">5</a>
-                <a href="">
+                
+                {pages.map(page => (
+                  <a href="" className={page === currentPage ? "is-active" : ""}>
+                    {page}
+                  </a>  
+                ))}
+                <a href="" style={styleNextBtn}>
                     <svg 
                         width="16" 
                         height="16" 

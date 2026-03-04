@@ -42,7 +42,7 @@ const isFiltered = (job) => {
               <JobsListing jobs={filteredJobs}/>
             </section>  
             {/* PAGINATION */}
-            <JobsPagination />
+            <JobsPagination currentPage={1} totalPages={5} />
         </main>
         <footer>
             <small>&copy; 2025 DevJobs. Todos los derechos reservados</small>
