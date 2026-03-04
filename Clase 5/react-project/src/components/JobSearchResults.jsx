@@ -1,4 +1,4 @@
-import JobListing from "./JobListing";
+import JobListing from "./JobListing.jsx";
 function JobSearchResults() { 
     return (
         <section class="search-results">

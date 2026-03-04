@@ -2,10 +2,10 @@
 import { useState } from "react";
 
 //Componentes
-import Header from "./components/Header";
-import SearchBar from "./components/SearchBar";
-import JobListing from "./components/JobListing";
-import JobsPagination from "./components/JobsPagination";
+import Header from "./components/Header.jxs";
+import SearchBar from "./components/SearchBar.jsx";
+import JobListing from "./components/JobListing.jsx";
+import JobsPagination from "./components/JobsPagination.jsx";
 
 //Data
 import jobsData from "./data/data.json";
