@@ -1,5 +1,5 @@
 //React
-import { useState } from "react";
+import { use, useState } from "react";
 
 //Componentes
 import { Header } from "./components/Header.jsx";
@@ -28,6 +28,14 @@ const isFiltered = (job) => {
     return isFiltered(job);
   });
 
+  const [currentPage, setCurrentPage] = useState(1);
+  const totalPages = 5;
+
+  const handleChangePage = (page) => { 
+    console.log("Cambiando a página: ", page);
+    setCurrentPage(page);
+  }
+
   return (
     <>
         <main className="search-page">
@@ -42,7 +50,7 @@ const isFiltered = (job) => {
               <JobsListing jobs={filteredJobs}/>
             </section>  
             {/* PAGINATION */}
-            <JobsPagination currentPage={1} totalPages={5} />
+            <JobsPagination currentPage={currentPage} totalPages={totalPages} onPageChange={handleChangePage}/>
         </main>
         <footer>
             <small>&copy; 2025 DevJobs. Todos los derechos reservados</small>
