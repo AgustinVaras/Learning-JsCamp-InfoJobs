@@ -49,6 +49,7 @@ export function JobsPagination( { currentPage = 1, totalPages = 1, onPageChange 
                 
                 {pages.map(page => (
                     <a 
+                    key={page}
                     href="" 
                     className={page === currentPage ? "is-active" : ""}
                     onClick={ ( event ) => handleChangePage( page, event )}>
