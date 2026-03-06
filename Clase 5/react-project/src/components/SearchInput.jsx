@@ -1,6 +1,8 @@
 import styles from "./SearchInput.module.css";
+import { useId} from "react";
 
 export function SearchInput({ onSearchChange }) {
+    const idSearch = useId();
     return (
         <div className={styles.inputWrapper}>
             <svg  
@@ -22,11 +24,13 @@ export function SearchInput({ onSearchChange }) {
                 <path d="M21 21l-6 -6" />
             </svg>  
             <input 
+                name = {idSearch}
                 id="search-input" 
                 type="text" 
                 placeholder="Buscar trabajos, empresas o habilidades" 
                 onChange={onSearchChange} 
             />
+            <button className={styles.btnSearch} type="submit">Buscar</button>
         </div>
     );    
 }
