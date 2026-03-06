@@ -1,3 +1,5 @@
+import styles from "./Pagination.module.css";
+
 export function JobsPagination( { currentPage = 1, totalPages = 1, onPageChange } ) {
     const pages = Array.from({ length: totalPages }, (_, i) => i + 1);
 
@@ -29,8 +31,8 @@ export function JobsPagination( { currentPage = 1, totalPages = 1, onPageChange 
     }
 
     return (
-        <nav className="pagination">
-            <div className="pagination-anchors">
+        <nav className={styles.pagination}>
+            <div className={styles.paginationAnchors}>
                 
                 <a href="" style={stylePrevBtn} onClick={handlePrevClick}>
                     <svg 
@@ -51,7 +53,7 @@ export function JobsPagination( { currentPage = 1, totalPages = 1, onPageChange 
                     <a 
                     key={page}
                     href="" 
-                    className={page === currentPage ? "is-active" : ""}
+                    className={page === currentPage ? styles.isActive : ""}
                     onClick={ ( event ) => handleChangePage( page, event )}>
                         {page}
                     </a>  
