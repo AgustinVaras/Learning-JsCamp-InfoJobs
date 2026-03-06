@@ -3,7 +3,7 @@ import { use, useState } from "react";
 
 //Componentes
 import { Header } from "./components/Header.jsx";
-import { SearchBar } from "./components/SearchBar.jsx";
+import { SearchBarSection } from "./components/SearchBarSection.jsx";
 import { JobsListing } from "./components/JobListing.jsx";
 import { JobsPagination } from "./components/JobsPagination.jsx";
 
@@ -44,11 +44,11 @@ const isFiltered = (job) => {
 
   return (
     <>
+        {/* HEADER */}
+        <Header />
         <main className="search-page">
-            {/* HEADER */}
-            <Header />
             {/* SEARCH BAR */}
-            <SearchBar onSearchChange={setSearchTerm}/>
+            <SearchBarSection onSearchChange={setSearchTerm}/>
             {/* SEARCH RESULTS */}
             <section className="search-results">
               <h2 id="search-title">Resultados de búsqueda</h2>

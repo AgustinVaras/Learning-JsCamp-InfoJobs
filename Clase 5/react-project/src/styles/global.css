@@ -36,7 +36,7 @@ body {
     min-height: 100vh;
     display: flex;
     flex-direction: column;
-    line-height: 1.6;;
+    line-height: 1.5;
 }
 
 /* Titulos principales */
@@ -221,7 +221,7 @@ article {
 main > section:nth-child(2) {
     padding-inline: 1rem;
     background-color: var(--background);
-    padding-top: 2rem;
+    padding-top: 0rem;
 
     & > header {
         gap: 2px;
@@ -310,92 +310,13 @@ article {
     /* border: 1px solid var(--border); */
 }
 
-.search-bar {
-     display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    padding: 0.5rem;
-    max-width: 1280px;
-    margin: 0 auto;
-    /* border: 1px solid var(--border); */
-}
 
-.search-bar > h1 {
-    padding-top: 1px;
-    font-size: 2.25rem;
-    font-weight: 500;
-    margin-bottom: 1rem;
-        
-}
-
-.search-bar > p {
-    color: var(--text-muted);
-    margin-bottom: 1.5rem;
-}
-
-.search-bar > form {
-    /* border: 1px solid var(--border); */
-    margin: 0 auto;
-    max-width: 70rem;
-}
-
-.input-wrapper {
-    position: relative;
-    border: 1px solid var(--border);
-    margin-left: 0;
-    margin-right: 0;
-}
-
-.input-icon {
-    stroke: var(--text-muted);
-    stroke-opacity: 0.5;
-}
-
-/* Dropdowns */
-.dropwdown-wrapper {
-    margin-top: 0.8rem;
-    padding-inline: 1px;
-    padding-block: 0px;
-    background: none;
-    box-shadow: none;
-    height: min-content;
-    /* border: 1px solid var(--border); */
-}
-
-.dropwdown-wrapper > select {
-    width: 100%;
-    max-width: max-content;
-    padding: 0.625rem 1.25rem;
-    border-radius: 0.5rem;
-    background-color: var(--input-bg);
-    color: white;
-    border: none;
-    cursor: pointer;
-    font-family: inherit;
-    font-size: 1rem;
-    white-space: nowrap;
-    transition: all 0.2s;
-    appearance: none;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' class='icon icon-tabler icons-tabler-outline icon-tabler-chevron-down'%3E%3Cpath stroke='none' d='M0 0h24v24H0z' fill='none'/%3E%3Cpath d='M6 9l6 6l6 -6' /%3E%3C/svg%3E");
-    background-repeat: no-repeat;
-    background-position: right 0.5rem center;
-    padding-right: 2.5rem;
-    &:hover {
-        color: white;
-        background-color: var(--primary-hover);
-    }
-    &:focus {
-        outline: 2px solid white;
-        outline-offset: 2px;
-    }
-}
 
 /* Resultados de búsqueda */
 
 
 .search-results {
-    margin: 2rem auto;
+    margin: auto;
     padding: 1.5rem;
     max-width: 1150px;
     /* border: 1px solid var(--border); */
