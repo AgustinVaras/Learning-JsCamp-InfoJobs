@@ -15,31 +15,67 @@ const RESULTS_PER_PAGE = 5;
 export function App() {
 
   const [searchTerm, setSearchTerm] = useState("");
+  const [filters, setFilters] = useState({
+    technology: "",
+    location: "",
+    level: ""
+  })
 
-//Valido si el trabajo debe ser filtrado o no
-const isFiltered = (job) => {
-    const search = searchTerm.toLowerCase();
-    const title = job.titulo.toLowerCase();
+  const activeFiltersValidation = (filters) => {
+    const values = Object.values(filters);
+    return values.some(value => value?.trim() !== '');
+  }
 
-    if(!search.trim()) return true;
+  //Valido si el trabajo debe ser filtrado o no
+  const isFilteredbyText = (job) => {
+      const search = searchTerm.toLowerCase();
+      const title = job.titulo.toLowerCase();
 
-    return title.includes(search) ? true : false
-}; 
+      if(!search.trim()) return true;
 
-  const filteredJobs = jobsData.filter((job) => {
-    return isFiltered(job);
+      return title.includes(search) ? true : false
+  }; 
+
+  const isFilteredByFilters = (job) => {
+    const { technology, modalidad, nivel } = job.data;
+    // console.log("Filtros activos: ", filters);
+    if(!activeFiltersValidation(filters)) return true;
+
+    if(filters.technology && !technology?.includes(filters.technology.toLowerCase())) return false;
+    if(filters.level && !nivel?.includes(filters.level.toLowerCase())) return false;
+    if(filters.location && !modalidad?.includes(filters.location.toLowerCase())) return false;
+
+    return true;
+  }
+
+  const filteredJobsbyFilters = jobsData.filter((job) => {
+    return isFilteredByFilters(job);
+  });
+
+  const jobsFiltered = filteredJobsbyFilters.filter((job) => {
+    return isFilteredbyText(job);
   });
 
   const [currentPage, setCurrentPage] = useState(1);
-  const totalPages = Math.ceil(filteredJobs.length / RESULTS_PER_PAGE);
-  const pagedResults = filteredJobs.slice(
+  const totalPages = Math.ceil(jobsFiltered.length / RESULTS_PER_PAGE);
+  const pagedResults = jobsFiltered.slice(
     (currentPage - 1 ) * RESULTS_PER_PAGE,
     currentPage * RESULTS_PER_PAGE
   );
 
+  const handleTextChange = (event) => {
+    setSearchTerm(event.target.value);
+    setCurrentPage(1);
+  }
+
   const handleChangePage = (page) => { 
     console.log("Cambiando a página: ", page);
     setCurrentPage(page);
+  }
+
+  const handleSearch = (newFilters) => {
+    setFilters(newFilters);
+    setCurrentPage(1);
   }
 
   return (
@@ -48,7 +84,7 @@ const isFiltered = (job) => {
         <Header />
         <main className="search-page">
             {/* SEARCH BAR */}
-            <SearchBarSection onSearchChange={setSearchTerm}/>
+            <SearchBarSection onSearchChange={handleTextChange} onSearch={handleSearch}/>
             {/* SEARCH RESULTS */}
             <section className="search-results">
               <h2 id="search-title">Resultados de búsqueda</h2>

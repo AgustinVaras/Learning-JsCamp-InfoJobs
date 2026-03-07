@@ -1,8 +1,8 @@
 import styles from "./SearchInput.module.css";
 import { useId} from "react";
 
-export function SearchInput({ onSearchChange }) {
-    const idSearch = useId();
+export function SearchInput({ onSearchChange, idSearch }) {
+    
     return (
         <div className={styles.inputWrapper}>
             <svg  
