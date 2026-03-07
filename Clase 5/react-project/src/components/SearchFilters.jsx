@@ -1,7 +1,4 @@
 import styles from "./SearchFilters.module.css";
-import { useId } from "react";
-
-// idTechnology, idLocation, idContract, idLevel
 
 export function SearchFilters( ) {
     

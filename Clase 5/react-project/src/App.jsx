@@ -1,5 +1,5 @@
 //React
-import { use, useState } from "react";
+import { useState } from "react";
 
 //Componentes
 import { Header } from "./components/Header.jsx";
@@ -10,36 +10,31 @@ import { JobsPagination } from "./components/JobsPagination.jsx";
 //Data
 import jobsData from "./data/data.json";
 
+//Constantes
 const RESULTS_PER_PAGE = 5;
 
 export function App() {
-
+  //Set de estados
   const [searchTerm, setSearchTerm] = useState("");
   const [filters, setFilters] = useState({
     technology: "",
     location: "",
     level: ""
   })
-
-  const activeFiltersValidation = (filters) => {
-    const values = Object.values(filters);
-    return values.some(value => value?.trim() !== '');
-  }
+  //-----------------------------------------------------------------------------
 
   //Valido si el trabajo debe ser filtrado o no
-  const isFilteredbyText = (job) => {
+  const matchesText = (job) => {
       const search = searchTerm.toLowerCase();
       const title = job.titulo.toLowerCase();
 
-      if(!search.trim()) return true;
+      if(!search) return true;
 
-      return title.includes(search) ? true : false
+      return title.includes(search);
   }; 
 
-  const isFilteredByFilters = (job) => {
+  const matchesFilters = (job) => {
     const { technology, modalidad, nivel } = job.data;
-    // console.log("Filtros activos: ", filters);
-    if(!activeFiltersValidation(filters)) return true;
 
     if(filters.technology && !technology?.includes(filters.technology.toLowerCase())) return false;
     if(filters.level && !nivel?.includes(filters.level.toLowerCase())) return false;
@@ -47,29 +42,27 @@ export function App() {
 
     return true;
   }
-
-  const filteredJobsbyFilters = jobsData.filter((job) => {
-    return isFilteredByFilters(job);
-  });
-
-  const jobsFiltered = filteredJobsbyFilters.filter((job) => {
-    return isFilteredbyText(job);
-  });
-
+  //-----------------------------------------------------------------------------
+  //Filtro el listado de trabajos
+  const jobsFiltered = jobsData
+    .filter((job) => matchesFilters(job))
+    .filter((job) => matchesText(job));
+  //-----------------------------------------------------------------------------
+  //Paginación
   const [currentPage, setCurrentPage] = useState(1);
   const totalPages = Math.ceil(jobsFiltered.length / RESULTS_PER_PAGE);
-  const pagedResults = jobsFiltered.slice(
+  const paginatedJobs = jobsFiltered.slice(
     (currentPage - 1 ) * RESULTS_PER_PAGE,
     currentPage * RESULTS_PER_PAGE
   );
-
+  //-----------------------------------------------------------------------------
+  //Handlers
   const handleTextChange = (event) => {
     setSearchTerm(event.target.value);
     setCurrentPage(1);
   }
 
   const handleChangePage = (page) => { 
-    console.log("Cambiando a página: ", page);
     setCurrentPage(page);
   }
 
@@ -77,7 +70,7 @@ export function App() {
     setFilters(newFilters);
     setCurrentPage(1);
   }
-
+  //-----------------------------------------------------------------------------
   return (
     <>
         {/* HEADER */}
@@ -89,7 +82,7 @@ export function App() {
             <section className="search-results">
               <h2 id="search-title">Resultados de búsqueda</h2>
               {/* JOB LISTINGS */}
-              <JobsListing jobs={pagedResults}/>
+              <JobsListing jobs={paginatedJobs}/>
             </section>  
             {/* PAGINATION */}
             <JobsPagination currentPage={currentPage} totalPages={totalPages} onPageChange={handleChangePage}/>
