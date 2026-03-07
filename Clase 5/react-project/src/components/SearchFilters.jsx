@@ -28,11 +28,6 @@ export function SearchFilters( ) {
                 <option value="barcelona">Barcelona</option>
                 <option value="bsas">Buenos Aires</option>
             </select>
-            {/* <select id="contract-filter" name="contract" defaultValue="">
-                <option value="" disabled >Tipo de contrato</option>
-                <option value="fullTime">Full-Time</option>
-                <option value="partTime">Part-Time</option>
-            </select> */}
             <select id="level-filter" name="level" defaultValue="">
                 <option value="" >Nivel de Experiencia</option>
                 <option value="junior">Junior</option>
