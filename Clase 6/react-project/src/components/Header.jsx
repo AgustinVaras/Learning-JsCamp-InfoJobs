@@ -1,3 +1,5 @@
+import { Link } from "./Link.jsx";
+
 export function Header () {
     return (
         <header>
@@ -16,14 +18,14 @@ export function Header () {
                 DevJobs
             </h1>
             <nav>
-                <a href="./index.html">Inicio</a>
-                <a href="./empleos.html">Empleos</a>
-                <a href="./detalle_empleo.html">Detalle</a>
-                <a href="">Salarios</a>
+                <Link href="/">Inicio</Link>
+                <Link href="/search">Empleos</Link>
+                <Link href="/detalle_empleo">Detalle</Link>
+                <Link href="/salarios">Salarios</Link>
             </nav>
             <div>
-                <a href="">Publicar un empleo</a>
-                <a href="">Iniciar Sesión</a>
+                <Link href="">Publicar un empleo</Link>
+                <Link href="">Iniciar Sesión</Link>
             </div>
         </header>
     );

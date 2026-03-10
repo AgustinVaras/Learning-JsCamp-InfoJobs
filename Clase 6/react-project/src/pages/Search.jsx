@@ -12,7 +12,7 @@ import jobsData from "../data/data.json";
 //Constantes
 const RESULTS_PER_PAGE = 5;
 
-export function SeachPage() {
+export function SearchPage() {
   //Set de estados
   const [searchTerm, setSearchTerm] = useState("");
   const [filters, setFilters] = useState({
