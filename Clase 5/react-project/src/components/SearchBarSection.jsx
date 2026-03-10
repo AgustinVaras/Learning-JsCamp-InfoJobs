@@ -4,13 +4,9 @@
 
     import styles from "./SearchBar.module.css";
 
-    export function SearchBarSection({ onSearchChange, onSearch }) {
+    export function SearchBarSection({ onSearch }) {
         //Declaro id para el input de búsqueda 
         const idSearch = useId();
-
-        const handleChange = (event) => {
-            onSearchChange(event);
-        }
 
         const handleSubmit = (event) => {
             event.preventDefault();
@@ -32,7 +28,7 @@
                 <h1>Encuentra tu próximo trabajo</h1> 
                 <p>Explora miles de oportunidades en el sector técnologico.</p>
                 <form role="search" onSubmit={handleSubmit}>
-                    <SearchInput onSearchChange={handleChange} idSearch={idSearch} />
+                    <SearchInput idSearch={idSearch} />
                     <SearchFilters />
                 </form>
             </section>

@@ -1,7 +1,7 @@
 import styles from "./SearchInput.module.css";
 import { useId} from "react";
 
-export function SearchInput({ onSearchChange, idSearch }) {
+export function SearchInput({ idSearch }) {
     
     return (
         <div className={styles.inputWrapper}>
@@ -28,7 +28,6 @@ export function SearchInput({ onSearchChange, idSearch }) {
                 id="search-input" 
                 type="text" 
                 placeholder="Buscar trabajos, empresas o habilidades" 
-                onChange={onSearchChange} 
             />
             <button className={styles.btnSearch} type="submit">Buscar</button>
         </div>

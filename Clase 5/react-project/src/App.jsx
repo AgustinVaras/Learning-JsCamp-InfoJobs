@@ -57,16 +57,12 @@ export function App() {
   );
   //-----------------------------------------------------------------------------
   //Handlers
-  const handleTextChange = (event) => {
-    setSearchTerm(event.target.value);
-    setCurrentPage(1);
-  }
-
   const handleChangePage = (page) => { 
     setCurrentPage(page);
   }
 
   const handleSearch = (newFilters) => {
+    setSearchTerm(newFilters.search);
     setFilters(newFilters);
     setCurrentPage(1);
   }
@@ -77,7 +73,7 @@ export function App() {
         <Header />
         <main className="search-page">
             {/* SEARCH BAR */}
-            <SearchBarSection onSearchChange={handleTextChange} onSearch={handleSearch}/>
+            <SearchBarSection onSearch={handleSearch}/>
             {/* SEARCH RESULTS */}
             <section className="search-results">
               <h2 id="search-title">Resultados de búsqueda</h2>
