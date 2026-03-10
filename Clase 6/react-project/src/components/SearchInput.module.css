@@ -1,0 +1,11 @@
+.inputWrapper {
+    position: relative;
+    border: 1px solid var(--border);
+    margin-left: 0;
+    margin-right: 0;
+}
+
+.inputIcon {
+    stroke: var(--text-muted);
+    stroke-opacity: 0.5;
+}
