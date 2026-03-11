@@ -11,21 +11,33 @@
 }
 
 .searchBar > h1 {
-    padding-top: 1px;
-    font-size: 2.25rem;
-    font-weight: 500;
+    
+    font-size: 3.25rem;
     margin-bottom: 1rem;
+    padding-top: 36px;
+    font-weight: 700;
+
+    color: var(--text-primary);
+
+    max-width: 900px;
         
 }
 
 .searchBar > p {
     color: var(--text-muted);
     margin-bottom: 1.5rem;
+    font-size: 1.125rem;
+
+    max-width: 700px;
 }
 
 .searchBar > form {
     /* border: 1px solid var(--border); */
     margin: 0 auto;
+
+    padding-inline: 1rem;
+    
+    width: 100%;
     max-width: 70rem;
 }
 

@@ -2,7 +2,8 @@
     import { SearchFilters } from "./SearchFilters.jsx"
     import { useId } from "react";
 
-    import styles from "./SearchBar.module.css";
+    import styles from "./SearchBarSection.module.css";
+
 
     export function SearchBarSection({ onSearch }) {
         //Declaro id para el input de búsqueda 
@@ -27,7 +28,7 @@
             <section className={styles.searchBar}>
                 <h1>Encuentra tu próximo trabajo</h1> 
                 <p>Explora miles de oportunidades en el sector técnologico.</p>
-                <form role="search" onSubmit={handleSubmit}>
+                <form  role="search" onSubmit={handleSubmit}>
                     <SearchInput idSearch={idSearch} />
                     <SearchFilters />
                 </form>

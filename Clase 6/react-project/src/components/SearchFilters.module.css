@@ -6,6 +6,8 @@
     background: none;
     box-shadow: none;
     height: min-content;
+    gap: 0.75rem;
+    display: flex;
     /* border: 1px solid var(--border); */
 }
 
