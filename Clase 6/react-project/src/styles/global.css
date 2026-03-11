@@ -60,65 +60,6 @@ h1 + p {
     margin-bottom: 2rem;
 }
 
-/* Header */
-header {
-    padding: 1rem auto;
-    height: 70px;
-    border-bottom: 1px solid var(--border);
-    background: var(--background);
-    padding: .5rem 1rem;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 2rem;
-    h2 {
-        font-size: 1.25rem;
-        font-weight: 700;
-        color: var(--text-primary);
-    }
-}
-
-/* Navbar */
-nav {
-    align-items: center;
-    gap: 1rem;
-    display: flex;
-
-    a {
-        text-decoration: none;
-        color: var(--text-secondary);
-        transition: color 0.2s;
-        font-weight: 500;
-
-        &:hover, &:focus {
-            color: var(--primary);
-            outline: none;
-        }
-    }
-}
-
-/* Botones del  header */
-header div {
-    margin-left: auto;
-    justify-self: right;
-}
-
-header div a {
-    padding: 0.5rem 1rem;
-    border-radius: 0.5rem;
-    background-color: #334155;
-    color: var(--text-primary);
-    display: inline-block;
-    font-size: 0.875rem;
-    font-weight: 700;
-    text-decoration: none;
-    transition: background-color 0.2s, color 0.2s;
-    &:hover, &:focus {
-        background-color: var(--primary-hover);
-        color: var(--text-primary);
-        outline: none;
-    }
-}
 
 /* HERO */
 main > section:nth-child(1) {
@@ -483,7 +424,7 @@ article {
         padding-left: 1rem;
         margin-top: 1rem;
         li {
-            background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%2309f' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' class='icon icon-tabler icons-tabler-outline icon-tabler-circle-check'%3E%3Cpath stroke='none' d='M0 0h24v24H0z' fill='none'/%3E%3Cpath d='M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0' /%3E%3Cpath d='M9 12l2 2l4 -4' /%3E%3C/svg%3E") no-repeat left top;
+            background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%2309f' strokeWidth='2' strokeLinecap='round' strokeLinejoin='round' className='icon icon-tabler icons-tabler-outline icon-tabler-circle-check'%3E%3Cpath stroke='none' d='M0 0h24v24H0z' fill='none'/%3E%3Cpath d='M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0' /%3E%3Cpath d='M9 12l2 2l4 -4' /%3E%3C/svg%3E") no-repeat left top;
             background-position: left 2px;
             padding: 0px 0 3px 30px;
             margin-bottom: 0.75rem;
