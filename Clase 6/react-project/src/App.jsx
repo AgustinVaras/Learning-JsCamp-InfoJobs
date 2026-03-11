@@ -1,6 +1,3 @@
-//React
-import { useEffect, useState } from "react";
-
 //Paginas
 import { SearchPage } from "./pages/Search.jsx";
 import { HomePage } from "./pages/Home.jsx";
