@@ -1,12 +1,14 @@
+import styles from "../components/Home.module.css";
+
 export function HomePage() {
     return (
         <main>
-            <section>
-                <img src="./background.webp" alt="Imagen de fondo" />
-                <h1>Encuentra el trabajo de tus sueños</h1>
-                <p>Únete a la comunidad más grande de desarrolladores y encuentra tu próxima oportunidad</p>
-                <form role="search">
-                    <div>
+            <section className={styles.hero}>
+                <img className={styles.hero_background} src="./background.webp" alt="Imagen de fondo" />
+                <h1 className={styles.hero_title}>Encuentra el trabajo de tus sueños</h1>
+                <p className={styles.hero_subtitle}>Únete a la comunidad más grande de desarrolladores y encuentra tu próxima oportunidad</p>
+                <form className={styles.search_form} role="search">
+                    <div className={styles.search_form_input_wrapper}>
 
                         <svg  
                             xmlns="http://www.w3.org/2000/svg"
@@ -18,7 +20,7 @@ export function HomePage() {
                             strokeWidth="2"  
                             strokeLinecap="round"  
                             strokeLinejoin="round"  
-                            className="icon icon-tabler icons-tabler-outline icon-tabler-search">
+                            className={`${styles.search_form_icon} + "icon icon-tabler icons-tabler-outline icon-tabler-search"}`}>
                             <path 
                             stroke="none" 
                             d="M0 0h24v24H0z" 
@@ -26,21 +28,21 @@ export function HomePage() {
                             <path d="M10 10m-7 0a7 7 0 1 0 14 0a7 7 0 1 0 -14 0" />
                             <path d="M21 21l-6 -6" />
                         </svg>
-                        <input type="text" placeholder="Buscar empleos..." />
-                        <button type="submit" >Buscar</button>
+                        <input className={ styles.search_form_input }type="text" placeholder="Buscar empleos..." />
+                        <button className={ styles.search_form_button } type="submit" >Buscar</button>
                     </div>
                 </form>
             </section>
-            <section>
-                <header>
+            <section className={styles.features}>
+                <header className={styles.features_header}>
                     <h2>¿Por qué DevJobs?</h2>
-                    <p>
+                    <p className={styles.features_description}>
                         DevJobs es la principal plataforma de búsqueda de empleos para desarrolladores.
                     </p>
                 </header>
-                <footer>
+                <div className={styles.features__grid}>
 
-                    <article>
+                    <article className={styles.feature_card}>
                         <svg 
                             fill="currentColor" 
                             height="32" 
@@ -54,7 +56,7 @@ export function HomePage() {
                         <p>Busca miles de empleos de las mejores empresas de todo el mundo.</p>
                     </article>
 
-                    <article>
+                    <article className={styles.feature_card}>
                         <svg 
                             fill="currentColor" 
                             height="32" 
@@ -68,7 +70,7 @@ export function HomePage() {
                         <p>Conecta con empresas que están contratando por tus habilidades.</p>
                     </article>
             
-                    <article>
+                    <article className={styles.feature_card}>
                             <svg 
                             fill="currentColor" 
                             height="32"
@@ -81,7 +83,7 @@ export function HomePage() {
                         <h3>Obtén el salario que mereces</h3>
                         <p>Obtén el salario que mereces con nuestra calculadora de salarios.</p>
                     </article>
-                </footer>
+                </div>
             </section>
         </main>
     );
