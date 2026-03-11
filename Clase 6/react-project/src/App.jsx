@@ -10,8 +10,13 @@ import { Error404 } from "./pages/404.jsx";
 import { Header } from "./components/Header.jsx";
 import { Footer } from "./components/Footer.jsx";
 
+//Hooks
+import { useRouter } from "./hooks/useRouter.jsx";
+
+
 function App() {
-  const [ currentPath, setCurrentPath ] = useState(window.location.pathname);
+
+  const { currentPath } = useRouter();
 
   let page = <Error404 />;
 
@@ -21,17 +26,6 @@ function App() {
     page = <SearchPage />
   } 
 
-  useEffect(() => {
-    const handleLocationChange = () => {
-      setCurrentPath(window.location.pathname);
-    }
-
-    window.addEventListener('popstate', handleLocationChange);
-
-    return () => {
-      window.removeEventListener('popstate', handleLocationChange);
-    }
-  }, []);
 
   return (
     <>
