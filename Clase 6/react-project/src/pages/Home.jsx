@@ -1,13 +1,27 @@
 import styles from "../components/Home.module.css";
+import { useRouter } from "../hooks/useRouter.jsx";
 
 export function HomePage() {
+    const handleSubmit = (event) => {
+        const { navigateTo } = useRouter();
+        event.preventDefault();
+        const formData = new FormData(event.target);
+        const searchTerm = formData.get('search');
+
+        const url = searchTerm !== ''
+        ?  `/search?text=${encodeURIComponent(searchTerm)}` 
+        : '/search';
+
+        navigateTo(url);
+    }
+
     return (
         <main>
             <section className={styles.hero}>
                 <img className={styles.hero_background} src="./background.webp" alt="Imagen de fondo" />
                 <h1 className={styles.hero_title}>Encuentra el trabajo de tus sueños</h1>
                 <p className={styles.hero_subtitle}>Únete a la comunidad más grande de desarrolladores y encuentra tu próxima oportunidad</p>
-                <form className={styles.search_form} role="search">
+                <form className={styles.search_form} role="search" onSubmit={handleSubmit}>
                     <div className={styles.search_form_input_wrapper}>
 
                         <svg  
@@ -28,7 +42,11 @@ export function HomePage() {
                             <path d="M10 10m-7 0a7 7 0 1 0 14 0a7 7 0 1 0 -14 0" />
                             <path d="M21 21l-6 -6" />
                         </svg>
-                        <input className={ styles.search_form_input }type="text" placeholder="Buscar empleos..." />
+                        <input 
+                            name="search"
+                            className={ styles.search_form_input }
+                            type="text" 
+                            placeholder="Buscar empleos..." />
                         <button className={ styles.search_form_button } type="submit" >Buscar</button>
                     </div>
                 </form>
