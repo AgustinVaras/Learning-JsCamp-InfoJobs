@@ -2,14 +2,14 @@ import styles from "../components/Home.module.css";
 import { useRouter } from "../hooks/useRouter.jsx";
 
 export function HomePage() {
+    const { navigateTo } = useRouter();
     const handleSubmit = (event) => {
-        const { navigateTo } = useRouter();
         event.preventDefault();
         const formData = new FormData(event.target);
         const searchTerm = formData.get('search');
 
         const url = searchTerm !== ''
-        ?  `/search?text=${encodeURIComponent(searchTerm)}` 
+        ? `/search?q=${encodeURIComponent(searchTerm)}`
         : '/search';
 
         navigateTo(url);
