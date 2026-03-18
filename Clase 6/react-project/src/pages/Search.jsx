@@ -61,15 +61,11 @@ export function SearchPage() {
   //-----------------------------------------------------------------------------
   return (
     <main className="search-page">
-        {/* SEARCH BAR */}
         <SearchBarSection onSearch={handleSearch}/>
-        {/* SEARCH RESULTS */}
         <section className="search-results">
           <h2 id="search-title">Resultados de búsqueda</h2>
-          {/* JOB LISTINGS */}
           <JobsListing jobs={paginatedJobs}/>
         </section>  
-        {/* PAGINATION */}
         <JobsPagination currentPage={currentPage} totalPages={totalPages} onPageChange={handleChangePage}/>
     </main>
   )
