@@ -11,10 +11,10 @@
   gap: 2rem;
 }
 
-/* .header a {
+.header a {
     color: var(--text-primary);
     text-decoration: none;
-} */
+}
 
 .header .currentPage {
   color: var(--primary-hover);
