@@ -11,9 +11,14 @@
   gap: 2rem;
 }
 
-.header a {
+/* .header a {
     color: var(--text-primary);
     text-decoration: none;
+} */
+
+.header .currentPage {
+  color: var(--primary-hover);
+  text-decoration: none;
 }
 
 /* Logo */
@@ -21,6 +26,11 @@
   font-size: 1.25rem;
   font-weight: 700;
   /* color: var(--text-primary); */
+}
+
+a .title {
+  color: var(--text-primary);
+  text-decoration: none;
 }
 
 /* NAVBAR */
@@ -46,15 +56,17 @@
 /* ACTIONS (botones) */
 .header__actions {
   margin-left: auto;
+  
 }
 
 /* BUTTON */
-.header__button {
+.header__actions a {
   display: inline-block;
   padding: 0.5rem 1rem;
+  margin: auto 5px;
 
   border-radius: 0.5rem;
-  background-color: #334155;
+  background-color: var(--primary);
 
   color: var(--text-primary);
   text-decoration: none;
@@ -65,8 +77,8 @@
   transition: background-color 0.2s, color 0.2s;
 }
 
-.header__button:hover,
-.header__button:focus {
+.header__actions a:hover,
+.header__actions a:focus {
   background-color: var(--primary-hover);
   color: var(--text-primary);
   outline: none;

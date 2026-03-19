@@ -5,7 +5,7 @@ export function Header () {
     return (
         <header className={styles.header}>
             <Link href="/" >
-                <h1>
+                <h1 className={styles.title}>
                         <svg className={styles.header__logo} 
                             fill="none" 
                             stroke="currentColor" 
