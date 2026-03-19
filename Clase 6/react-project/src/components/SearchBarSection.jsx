@@ -1,28 +1,16 @@
+    //Components
     import { SearchInput } from "./SearchInput.jsx";
-    import { SearchFilters } from "./SearchFilters.jsx"
-    import { useId } from "react";
+    import { SearchFilters } from "./SearchFilters.jsx";
 
+    //Styles
     import styles from "./SearchBarSection.module.css";
+    
+    //Hooks
+    import { useSearchForm } from "../hooks/useSearchForm.jsx";
 
 
     export function SearchBarSection({ onSearch }) {
-        //Declaro id para el input de búsqueda 
-        const idSearch = useId();
-
-        const handleSubmit = (event) => {
-            event.preventDefault();
-            const formData = new FormData(event.target);
-
-            const filters = {
-                search: formData.get(idSearch),
-                technology: formData.get("technology"),
-                location: formData.get("location"),
-                contract: formData.get("contract"),
-                level: formData.get("level")
-            }
-            console.log(filters);
-            onSearch(filters);
-        }
+        const { idSearch, handleSubmit } = useSearchForm(onSearch);
 
         return (
             <section className={styles.searchBar}>
