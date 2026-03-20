@@ -1,0 +1,101 @@
+.contactPage {
+    width: 100%;
+}
+
+.contactFormContainer {
+    height: 600px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    text-align: center;
+    position: relative;
+
+    padding-inline: 1rem;
+
+    border: 1px solid var(--border);
+}
+
+.contactForm {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+}
+
+.emailInput {
+    width: 100%;
+
+    background-color: var(--input-bg);
+    color: var(--text-primary);
+
+    border: none; 
+    outline: none;
+
+    padding: 0.75rem;
+    border-radius: 0.5rem;
+
+    font-family: inherit;
+    font-size: 1rem;
+
+    margin: 1rem auto;
+}
+
+.emailInput::placeholder {
+    color: var(--text-muted);
+}
+
+.emailInput:focus {
+    outline: 2px solid var(--primary);
+    outline-offset: 2px;
+}
+
+.contactInput {
+    width: 100%;    
+    min-height: 150px;
+
+    background-color: var(--input-bg);
+    color: var(--text-primary);
+
+    border: none;
+    outline: none;
+
+    padding: 0.75rem;
+    border-radius: 0.5rem;
+
+    font-family: inherit;
+    font-size: 1rem;
+
+    resize: vertical; /* importante */
+}
+
+.contactInput::placeholder {
+    color: var(--text-muted);
+}
+
+.contactInput:focus {
+    outline: 2px solid var(--primary);
+    outline-offset: 2px;
+}
+
+.submitForm {
+    margin-top: 0.75rem;
+
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.5rem;
+
+    background-color: var(--primary);
+    color: white;
+
+    border: none;
+    cursor: pointer;
+
+    font-weight: 700;
+
+    transition: background-color 0.2s, color 0.2s;
+}
+
+.submitForm:hover {
+    background-color: var(--primary-hover);
+}

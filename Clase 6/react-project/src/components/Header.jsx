@@ -23,6 +23,7 @@ export function Header () {
             <nav className={styles.header__nav}>
                 <Link href="/">Inicio</Link>
                 <Link href="/search">Empleos</Link>
+                <Link href="/contact">Contacto</Link>
             </nav>
             <div className={styles.header__actions}>
                 <Link className={styles.header__button} href="">Publicar un empleo</Link>
