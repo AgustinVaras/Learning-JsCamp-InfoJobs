@@ -5,6 +5,7 @@ export function usePagination(data, itemsPerPage) {
     const [currentPage, setCurrentPage] = useState(1);
     
     const totalPages = Math.ceil(data.length / itemsPerPage);
+    
 
     const paginatedData = useMemo(() => {
             return data.slice(

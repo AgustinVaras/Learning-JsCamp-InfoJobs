@@ -38,5 +38,12 @@ export function useFilterHelp(styles) {
         hideHelp();
     };
 
-    return { helpText, handleFocus, handleBlur, handleMouseEnter, handleChange, handleMouseLeave };
+    return { 
+        helpText, 
+        handleFocus, 
+        handleBlur, 
+        handleMouseEnter, 
+        handleChange, 
+        handleMouseLeave 
+    };
 }
