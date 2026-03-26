@@ -1,34 +1,35 @@
 //React
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 
-export function useFetchJobs () {
+export function useFetchJobs (searchTerm, filters) {
     const [ loading, setLoading ] = useState(true); 
     const [ jobsData, setJobsData ] = useState([]);
     const [ total, setTotal ] = useState(0);
     
-    useEffect(() => {
-        async function fetchJobs() {
-            try {
-                setLoading(true);
-                const response = await fetch('https://jscamp-api.vercel.app/api/jobs');
-                const json = await response.json(); 
-                
-                setJobsData(json.data);
-                setTotal(json.total);
+    
+    async function fetchJobs(query) {
+        try {
+            setLoading(true);
 
-            } catch (error) {
-                console.error('Error fetching jobs: ', error);
-            } finally {
-                setLoading(false);
-            }
-        };  
+            const response = await fetch(
+                `https://jscamp-api.vercel.app/api/jobs${query ? `?${query}`: ""}`
+            );
 
-        fetchJobs();
-    }, []);
+            const json = await response.json(); 
+            
+            setJobsData(json.data);
+            setTotal(json.total);
+
+        } catch (error) {
+            console.error('Error fetching jobs: ', error);
+        } finally {
+            setLoading(false);
+        }
+    };  
 
     return {
         jobsData,
-        total,
-        loading
+        loading,
+        fetchJobs
     }
 }
