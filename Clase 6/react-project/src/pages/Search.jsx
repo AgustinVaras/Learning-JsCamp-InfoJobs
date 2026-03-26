@@ -18,6 +18,7 @@ export function SearchPage() {
   
   const { 
     jobsData, 
+    total,
     loading, 
     fetchJobs 
   } = useFetchJobs();
@@ -31,10 +32,9 @@ export function SearchPage() {
   const { 
     currentPage, 
     totalPages, 
-    paginatedData, 
     goToPage,
     resetPage 
-  } = usePagination(jobsData, RESULTS_PER_PAGE);
+  } = usePagination(jobsData, total, RESULTS_PER_PAGE);
     
   const buildQuery = (searchTerm, filters) => {
     const params = new URLSearchParams();
@@ -44,13 +44,17 @@ export function SearchPage() {
     if (filters.location) params.append("type", filters.location);
     if (filters.level) params.append("level", filters.level);
 
+    const offset = ( currentPage - 1 ) * RESULTS_PER_PAGE;
+    params.append('limit', RESULTS_PER_PAGE);
+    params.append('offset', offset);
+
     return params.toString();
   }
   
   useEffect(() => {
     const query = buildQuery(searchTerm, filters);
     fetchJobs(query);
-  }, [searchTerm, filters]);
+  }, [searchTerm, filters, currentPage]);
 
   const handleSearchWithReset = (filters) => {
     handleSearch(filters); 
@@ -62,7 +66,7 @@ export function SearchPage() {
       <SearchBarSection onSearch={handleSearchWithReset}/>
       <section className="search-results">
         <h2 id="search-title">Resultados de búsqueda</h2>
-        <JobsListing jobs={paginatedData}/>
+        <JobsListing jobs={jobsData}/>
       </section>  
       <JobsPagination 
         currentPage={currentPage} 

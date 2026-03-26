@@ -1,19 +1,11 @@
 import { useState, useMemo } from "react";
 
-export function usePagination(data, itemsPerPage) {
+export function usePagination(data, total, itemsPerPage) {
 
     const [currentPage, setCurrentPage] = useState(1);
     
-    const totalPages = Math.ceil(data.length / itemsPerPage);
+    const totalPages = Math.ceil(total / itemsPerPage);
     
-
-    const paginatedData = useMemo(() => {
-            return data.slice(
-                (currentPage - 1 ) * itemsPerPage,
-                currentPage * itemsPerPage
-            );
-        }, [data, currentPage, itemsPerPage]
-    );
 
     const goToPage = (page) => {
         setCurrentPage(page);
@@ -26,7 +18,6 @@ export function usePagination(data, itemsPerPage) {
     return { 
         currentPage, 
         totalPages, 
-        paginatedData, 
         goToPage,
         resetPage 
     };

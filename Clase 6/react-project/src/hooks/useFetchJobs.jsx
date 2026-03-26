@@ -29,6 +29,7 @@ export function useFetchJobs (searchTerm, filters) {
 
     return {
         jobsData,
+        total,
         loading,
         fetchJobs
     }
