@@ -1,12 +1,13 @@
 import { useEffect, useState } from "react";
+import { usePersistedFilters } from "./usePersistedFilters.jsx";
 
 
 export function useJobFilters() {
     //Set de estados
     const [ activeFilters, setActiveFilters ] = useState(false);
-    const [searchTerm, setSearchTerm] = useState("");
+    const [ searchTerm, setSearchTerm, clearPersistedSearchTerm ] = usePersistedFilters("jobSearchTerm", "");
     const [ clearCount, setClearCount ] = useState(0);
-    const [filters, setFilters] = useState({
+    const [filters, setFilters, clearPersistedFilters] = usePersistedFilters( "jobFilters" ,{
         technology: "",
         location: "",
         level: ""
@@ -22,17 +23,14 @@ export function useJobFilters() {
         if ( filters.technology ) return true;
         if ( filters.location ) return true;
         if ( filters.level ) return true;
+        if ( searchTerm ) return true;
 
         return false;
     };
 
     const clearFilters = () => {
-        setFilters ({
-            technology: "",
-            location: "",
-            level: ""
-        });
-        setSearchTerm("");
+        clearPersistedSearchTerm(); 
+        clearPersistedFilters();
         setClearCount(prev => prev + 1);
         setActiveFilters(false);
     };
