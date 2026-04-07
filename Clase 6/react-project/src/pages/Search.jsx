@@ -2,6 +2,7 @@
 import { SearchBarSection } from "../components/SearchBarSection.jsx";
 import { JobsListing } from "../components/JobListing.jsx";
 import { JobsPagination } from "../components/JobsPagination.jsx";
+import { Spinner } from "../components/Spinner.jsx";
 
 //Data
 // import jobsData from "../data/data.json";
@@ -78,7 +79,19 @@ export function SearchPage() {
       />
       <section className="search-results">
         <h2 id="search-title">Resultados de búsqueda</h2>
-        <JobsListing jobs={jobsData}/>
+        {
+          loading 
+            ? (
+              <div className="loading-container">
+                <Spinner />
+                <p>Cargando ofertas de trabajo...</p>
+              </div>
+            ) 
+            : (
+              <JobsListing jobs={jobsData}/>
+            )
+          
+        }
       </section>  
       <JobsPagination 
         currentPage={currentPage} 
