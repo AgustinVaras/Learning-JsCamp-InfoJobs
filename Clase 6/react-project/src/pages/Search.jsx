@@ -15,7 +15,7 @@ import { useEffect } from "react";
 const RESULTS_PER_PAGE = 5;
 
 export function SearchPage() {
-  
+  //Hooks calls
   const { 
     jobsData, 
     total,
@@ -26,6 +26,9 @@ export function SearchPage() {
   const { 
     searchTerm,
     filters,
+    activeFilters,
+    clearCount,
+    clearFilters,
     handleSearch 
   } = useJobFilters();
 
@@ -35,7 +38,8 @@ export function SearchPage() {
     goToPage,
     resetPage 
   } = usePagination(jobsData, total, RESULTS_PER_PAGE);
-    
+  //---------------------------------------------------------------------------------------------------------------
+  //Functions
   const buildQuery = (searchTerm, filters) => {
     const params = new URLSearchParams();
 
@@ -50,12 +54,14 @@ export function SearchPage() {
 
     return params.toString();
   }
-  
+  //---------------------------------------------------------------------------------------------------------------
+  //Effects
   useEffect(() => {
     const query = buildQuery(searchTerm, filters);
     fetchJobs(query);
   }, [searchTerm, filters, currentPage]);
-
+  //---------------------------------------------------------------------------------------------------------------
+  //Handles
   const handleSearchWithReset = (filters) => {
     handleSearch(filters); 
     resetPage();
@@ -63,7 +69,13 @@ export function SearchPage() {
 
   return (
     <main className="search-page">
-      <SearchBarSection onSearch={handleSearchWithReset}/>
+      <SearchBarSection 
+        filters={filters}
+        onSearch={handleSearchWithReset} 
+        clearCount={clearCount}
+        activeFilters={activeFilters} 
+        onClearFilters={clearFilters}
+      />
       <section className="search-results">
         <h2 id="search-title">Resultados de búsqueda</h2>
         <JobsListing jobs={jobsData}/>

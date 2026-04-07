@@ -1,15 +1,26 @@
 import { useFilterHelp } from "../hooks/useFilterHelp";
 import styles from "./SearchFilters.module.css";
 
-export function SearchFilters( ) {
-    const { helpText, handleFocus, handleBlur, handleMouseEnter, handleChange, handleMouseLeave } = useFilterHelp(styles);
+export function SearchFilters({ activeFilters, onClearFilters, filters }) {
+    const { 
+        helpText, 
+        handleFocus, 
+        handleBlur, 
+        handleMouseEnter, 
+        handleChange, 
+        handleMouseLeave } = useFilterHelp(styles);
+
+    const handleClearFilters = (event) => {
+        event.preventDefault();
+        onClearFilters();
+    }
 
     return (
         <div className={styles.dropDownWrapper}>
             <select 
                 id="technology-filter" 
                 name="technology" 
-                defaultValue="" 
+                defaultValue={filters.technology}
                 onFocus={handleFocus} 
                 onBlur={handleBlur} 
                 onMouseEnter={handleMouseEnter}
@@ -31,7 +42,7 @@ export function SearchFilters( ) {
             <select 
                 id="location-filter" 
                 name="location" 
-                defaultValue=""
+                defaultValue={filters.location}
                 onFocus={handleFocus} 
                 onBlur={handleBlur}
                 onMouseEnter={handleMouseEnter}
@@ -47,7 +58,7 @@ export function SearchFilters( ) {
             <select 
                 id="level-filter" 
                 name="level" 
-                defaultValue=""
+                defaultValue={filters.level}
                 onFocus={handleFocus} 
                 onBlur={handleBlur} 
                 onMouseEnter={handleMouseEnter}
@@ -58,6 +69,9 @@ export function SearchFilters( ) {
                 <option value="mid-level">Mid-Level</option>
                 <option value="senior">Senior</option>
             </select>
+            { activeFilters && 
+                <button onClick={handleClearFilters} className={styles.btn_clear}>Clear</button> 
+            }
             {helpText && <p className={styles.filtersHelp}>{helpText}</p>}
         </div>
     )

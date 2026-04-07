@@ -13,7 +13,7 @@ export function useSearchForm(onSearch) {
             contract: formData.get("contract"),
             level: formData.get("level")
         }
-        console.log(filters);
+        // console.log(filters);
         onSearch(filters);
     }
 
