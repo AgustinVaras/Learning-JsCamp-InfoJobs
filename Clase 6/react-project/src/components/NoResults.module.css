@@ -1,0 +1,13 @@
+.no_results {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    margin: 40px auto;
+    border: 2px solid var(--border);
+    border-radius: 10px;
+    padding: 48px 32px;
+    width: auto;
+    /* max-width: 780px; */
+    min-height: 300px;
+}

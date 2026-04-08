@@ -3,6 +3,7 @@ import { SearchBarSection } from "../components/SearchBarSection.jsx";
 import { JobsListing } from "../components/JobListing.jsx";
 import { JobsPagination } from "../components/JobsPagination.jsx";
 import { Spinner } from "../components/Spinner.jsx";
+import { NoResults } from "../components/NoResults.jsx";
 
 //Data
 // import jobsData from "../data/data.json";
@@ -78,26 +79,39 @@ export function SearchPage() {
         onClearFilters={clearFilters}
       />
       <section className="search-results">
-        <h2 id="search-title">Resultados de búsqueda</h2>
         {
           loading 
-            ? (
-              <div className="loading-container">
+          ? (
+            <div className="loading-container">
                 <Spinner />
                 <p>Cargando ofertas de trabajo...</p>
               </div>
             ) 
             : (
-              <JobsListing jobs={jobsData}/>
+              jobsData.length === 0
+              ? (
+                <NoResults/>
+              ) : (
+                <>
+                  <h2 id="search-title">Resultados de búsqueda</h2>
+                  <JobsListing jobs={jobsData}/>
+                </>
+              )
             )
           
         }
-      </section>  
-      <JobsPagination 
-        currentPage={currentPage} 
-        totalPages={totalPages} 
-        onPageChange={goToPage}
-      />
+      </section>
+      {
+        jobsData.length > 0 
+        ? (  
+          <JobsPagination 
+            currentPage={currentPage} 
+            totalPages={totalPages} 
+            onPageChange={goToPage}
+          />
+        ) 
+        : (null)
+      }
     </main>
   )
 };
