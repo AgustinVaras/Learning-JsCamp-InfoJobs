@@ -4,7 +4,7 @@ export function usePagination(data, total, itemsPerPage) {
 
     const [currentPage, setCurrentPage] = useState(() => {
         const params = new URLSearchParams(window.location.search);
-        const page = Number(params.get("page"));
+        const page = Number(params.get("page")) || 1;
         return !Number.isNaN(page) ? page : 1;
     });
     
