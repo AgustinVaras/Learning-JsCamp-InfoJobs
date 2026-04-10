@@ -2,7 +2,11 @@ import { useState, useMemo } from "react";
 
 export function usePagination(data, total, itemsPerPage) {
 
-    const [currentPage, setCurrentPage] = useState(1);
+    const [currentPage, setCurrentPage] = useState(() => {
+        const params = new URLSearchParams(window.location.search);
+        const page = Number(params.get("page"));
+        return !Number.isNaN(page) ? page : 1;
+    });
     
     const totalPages = Math.ceil(total / itemsPerPage);
     

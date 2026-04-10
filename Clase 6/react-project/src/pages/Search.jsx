@@ -95,6 +95,11 @@ export function SearchPage() {
     resetPage();
   }
 
+  const handleClearWithReset = () => {
+    clearFilters();
+    resetPage();
+  }
+
   return (
     <main className="search-page">
       <SearchBarSection 
@@ -102,7 +107,7 @@ export function SearchPage() {
         onSearch={handleSearchWithReset} 
         clearCount={clearCount}
         activeFilters={activeFilters} 
-        onClearFilters={clearFilters}
+        onClearFilters={handleClearWithReset}
         searchTerm={searchTerm}
       />
       <section className="search-results">

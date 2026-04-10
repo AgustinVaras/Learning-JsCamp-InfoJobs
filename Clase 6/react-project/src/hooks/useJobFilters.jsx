@@ -3,6 +3,7 @@ import { usePersistedFilters } from "./usePersistedFilters.jsx";
 import { useRouter } from "./useRouter.jsx";
 
 
+
 export function useJobFilters() {
     //Set de estados
     const [ activeFilters, setActiveFilters ] = useState(false);
@@ -16,7 +17,6 @@ export function useJobFilters() {
         location: "",
         level: ""
     });
-    const { navigateTo } = useRouter();
 
 
     useEffect(() => {
