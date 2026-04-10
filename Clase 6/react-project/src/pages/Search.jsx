@@ -12,12 +12,14 @@ import { NoResults } from "../components/NoResults.jsx";
 import { useFetchJobs } from "../hooks/useFetchJobs.jsx";
 import { useJobFilters } from "../hooks/useJobFilters.jsx";
 import { usePagination } from "../hooks/usePagination.jsx";
+import { useRouter } from "../hooks/useRouter.jsx";
 import { useEffect } from "react";
 
 const RESULTS_PER_PAGE = 5;
 
 export function SearchPage() {
   //Hooks calls
+  const { navigateTo } = useRouter();
   const { 
     jobsData, 
     total,
@@ -42,7 +44,7 @@ export function SearchPage() {
   } = usePagination(jobsData, total, RESULTS_PER_PAGE);
   //---------------------------------------------------------------------------------------------------------------
   //Functions
-  const buildQuery = (searchTerm, filters) => {
+  const buildApiQuery = (searchTerm, filters) => {
     const params = new URLSearchParams();
 
     if (searchTerm) params.append("text", searchTerm);
@@ -56,11 +58,35 @@ export function SearchPage() {
 
     return params.toString();
   }
+
+  const buildUrlQuery = (searchTerm, filters) => {
+    const params = new URLSearchParams();
+
+    if (searchTerm) params.append("text", searchTerm);
+    if (filters.technology) params.append("technology", filters.technology);
+    if (filters.location) params.append("type", filters.location);
+    if (filters.level) params.append("level", filters.level);
+
+    if ( currentPage > 1 ) {
+      params.append('page', currentPage);
+    }
+
+    return params.toString();
+  }
   //---------------------------------------------------------------------------------------------------------------
   //Effects
   useEffect(() => {
-    const query = buildQuery(searchTerm, filters);
+    const query = buildApiQuery(searchTerm, filters);
     fetchJobs(query);
+  }, [searchTerm, filters, currentPage]);
+
+  useEffect(() => {
+    const newUrl = buildUrlQuery(searchTerm, filters) 
+      ? `${ window.location.pathname }?${buildUrlQuery(searchTerm, filters)}`
+      : window.location.pathname;
+
+    console.log("Navegando a:", newUrl);
+    navigateTo(newUrl);
   }, [searchTerm, filters, currentPage]);
   //---------------------------------------------------------------------------------------------------------------
   //Handles
@@ -77,6 +103,7 @@ export function SearchPage() {
         clearCount={clearCount}
         activeFilters={activeFilters} 
         onClearFilters={clearFilters}
+        searchTerm={searchTerm}
       />
       <section className="search-results">
         {

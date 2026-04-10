@@ -9,7 +9,7 @@
     import { useSearchForm } from "../hooks/useSearchForm.jsx";
 
 
-    export function SearchBarSection({ onSearch, activeFilters, clearCount, onClearFilters, filters }) {
+    export function SearchBarSection({ onSearch, activeFilters, clearCount, onClearFilters, filters, searchTerm }) {
         const { idSearch, handleSubmit } = useSearchForm(onSearch);
 
         return (
@@ -17,7 +17,7 @@
                 <h1>Encuentra tu próximo trabajo</h1> 
                 <p>Explora miles de oportunidades en el sector técnologico.</p>
                 <form  role="search" onSubmit={handleSubmit} key={clearCount}>
-                    <SearchInput idSearch={idSearch} />
+                    <SearchInput idSearch={idSearch} searchTerm={searchTerm} />
                     <SearchFilters activeFilters={activeFilters} onClearFilters={onClearFilters} filters={filters}/>
                 </form>
             </section>

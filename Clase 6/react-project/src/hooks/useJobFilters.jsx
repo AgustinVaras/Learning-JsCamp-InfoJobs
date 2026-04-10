@@ -1,17 +1,22 @@
 import { useEffect, useState } from "react";
 import { usePersistedFilters } from "./usePersistedFilters.jsx";
+import { useRouter } from "./useRouter.jsx";
 
 
 export function useJobFilters() {
     //Set de estados
     const [ activeFilters, setActiveFilters ] = useState(false);
-    const [ searchTerm, setSearchTerm, clearPersistedSearchTerm ] = usePersistedFilters("jobSearchTerm", "");
+    const [ searchTerm, setSearchTerm, clearPersistedSearchTerm ] = usePersistedFilters("jobSearchTerm", (() => {
+        const params = new URLSearchParams(window.location.search);
+        return params.get("text") || "";
+    })());
     const [ clearCount, setClearCount ] = useState(0);
     const [filters, setFilters, clearPersistedFilters] = usePersistedFilters( "jobFilters" ,{
         technology: "",
         location: "",
         level: ""
     });
+    const { navigateTo } = useRouter();
 
 
     useEffect(() => {
@@ -31,6 +36,7 @@ export function useJobFilters() {
     const clearFilters = () => {
         clearPersistedSearchTerm(); 
         clearPersistedFilters();
+        
         setClearCount(prev => prev + 1);
         setActiveFilters(false);
     };

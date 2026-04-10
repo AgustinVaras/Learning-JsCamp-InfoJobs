@@ -1,7 +1,7 @@
 import styles from "./SearchInput.module.css";
 
 
-export function SearchInput({ idSearch }) {
+export function SearchInput({ idSearch, searchTerm }) {
     
     return (
         <div className={styles.inputWrapper}>
@@ -29,6 +29,7 @@ export function SearchInput({ idSearch }) {
                 id="search-input" 
                 type="text" 
                 placeholder="Buscar trabajos, empresas o habilidades" 
+                defaultValue={searchTerm}
             />
             <button className={styles.inputButton} type="submit">Buscar</button>
         </div>

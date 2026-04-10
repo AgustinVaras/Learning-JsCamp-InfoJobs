@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 
 export function usePersistedFilters(key, initialValue) {
     const [ filters, setFilters ] = useState(() => {
+        if (initialValue) return initialValue;
         const storedFilters = localStorage.getItem(key);
         return storedFilters ? JSON.parse(storedFilters) : initialValue;
     });
@@ -11,7 +12,7 @@ export function usePersistedFilters(key, initialValue) {
     }, [filters]);
 
     const clearPersistedFilters = () => {
-        setFilters(initialValue);
+        setFilters("");
         localStorage.removeItem(key);
     };
 

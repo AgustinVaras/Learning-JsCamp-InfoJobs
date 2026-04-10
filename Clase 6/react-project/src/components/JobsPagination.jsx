@@ -30,11 +30,20 @@ export function JobsPagination( { currentPage = 1, totalPages = 1, onPageChange 
         }
     }
 
+    const buildPageUrl = ( page ) => {
+        const url = new URL( window.location );
+        url.searchParams.set( 'page', page );
+        return `${ url.pathname }?${ url.searchParams.toString() }`;
+    }
+
     return (
         <nav className={styles.pagination}>
             <div className={styles.paginationAnchors}>
                 
-                <a href="" style={stylePrevBtn} onClick={handlePrevClick}>
+                <a 
+                href={ buildPageUrl( currentPage - 1 ) } 
+                style={stylePrevBtn} 
+                onClick={handlePrevClick}>
                     <svg 
                         width="16" 
                         height="16" 
@@ -52,13 +61,16 @@ export function JobsPagination( { currentPage = 1, totalPages = 1, onPageChange 
                 {pages.map(page => (
                     <a 
                     key={page}
-                    href="" 
+                    href={ buildPageUrl( page ) } 
                     className={page === currentPage ? styles.isActive : ""}
                     onClick={ ( event ) => handleChangePage( page, event )}>
                         {page}
                     </a>  
                 ))}
-                <a href="" style={styleNextBtn} onClick={handleNextClick}>
+                <a 
+                href={ buildPageUrl( currentPage + 1 ) } 
+                style={styleNextBtn}
+                onClick={handleNextClick}>
                     <svg 
                         width="16" 
                         height="16" 
