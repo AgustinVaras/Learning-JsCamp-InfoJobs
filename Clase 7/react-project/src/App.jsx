@@ -4,9 +4,9 @@ import { HomePage } from "./pages/Home.jsx";
 import { Contact } from "./pages/Contact.jsx"
 
 //Componentes
+import { Routes , Route } from 'react-router';
 import { Header } from "./components/Header.jsx";
 import { Footer } from "./components/Footer.jsx";
-import { Route } from "./components/Route.jsx";
 
 
 function App() {
@@ -14,9 +14,11 @@ function App() {
   return (
     <>
         <Header />
-        <Route path="/" component={HomePage} />
-        <Route path="/search" component={SearchPage} />
-        <Route path="/contact" component={Contact} />
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/search" element={<SearchPage />} />
+          <Route path="/contact" element={<Contact />} />
+        </Routes>
         <Footer />
     </>
   )
