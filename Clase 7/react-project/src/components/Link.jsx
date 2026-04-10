@@ -1,27 +1,20 @@
-import { useRouter } from '../hooks/useRouter.jsx';
+import { Link as NavLink, useLocation } from 'react-router';
 
 import styles from './Header.module.css' 
 
 export function Link ({ href, children, ...restOfProps }) {
-    const { navigateTo, currentPath } = useRouter();
-    const handleClick = (event) => {
-        event.preventDefault();
-
-        navigateTo(href);
-    }
-    
+    const currentPage = useLocation().pathname;
     return (
-        <a 
-            href={href} 
+        <NavLink 
+            to={href} 
             {...restOfProps} 
-            onClick={handleClick}
             className={
-                href === currentPath 
+                href === currentPage 
                 ?  styles.currentPage
                 : ''
             }
         >
             {children}
-        </a>
+        </NavLink>
     )
 }
