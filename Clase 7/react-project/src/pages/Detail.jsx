@@ -1,63 +1,89 @@
+//Librerias
+import snarkdown from "snarkdown";
 
+//Hooks
+import { useParams } from "react-router";
+import { useEffect } from "react";
+import { useFetchJobs } from "../hooks/useFetchJobs.jsx";
+
+//Componentes
+import { Spinner } from "../components/Spinner.jsx";
+import { Link } from "../components/Link.jsx";
+
+export function JobTitle ({ title, company, location }) {
+    return (
+        <section className="job-title">
+            <div>
+                <h1>{title}</h1>
+                <small>{company} - {location}</small>
+            </div>
+            <button className="btn-apply-large">Aplicar ahora</button>
+        </section>
+    );
+};
+
+export function JobSection ({ title, content, className = "" }) {
+    const html = snarkdown(content ?? "");
+    return (
+        <section className={className}>
+            <h2>{title}</h2>
+            <p dangerouslySetInnerHTML={{ __html: html }} />
+        </section>
+    )
+};
 
 export function Detail () {
+    const { id } = useParams();
+    const { fetchJobWithId, loading, job, error } = useFetchJobs();
+
+
+    useEffect(() => {
+        fetchJobWithId(id);
+        
+    }, [id]);
+
+
+    if ( loading ) {
+        return(
+            <div className="loading-container">
+                <Spinner />
+                <p>Cargando ofertas de trabajo...</p>
+            </div>
+        )
+    }
+
+    if (error) {
+        return (
+            <div className="error-container">
+                <h2>Error</h2>
+                <p>{error}</p>
+                <a href="../search">Volver a la búsqueda</a>
+            </div>
+        );
+    }
+
     return (
         <main>
-            <nav class="job-route">
+            <nav className="job-route">
                 <div>
-                    <a href="./empleos.html">Empleos </a><p> / </p><a>Ingeniero de Software Senior</a>
+                    <Link href="../search">Empleos </Link><p> / </p><a>{job.titulo}</a>
                 </div>
             </nav>
-            <article class="job-detail">
+            <article className="job-detail">
                 <div>
-                    <section class="job-title">
-                        <div>
-                            <h1>Ingeniero de Software Senior</h1>
-                            <small>Tech Solutions Inc. - Remoto</small>
-                        </div>
-                        <button class="btn-apply-large">Aplicar ahora</button>
-                    </section>
-                    <section class="job-description">
-                        <h2>Descripción del puesto</h2>
-                        <p>Tech Solutions Inc. está buscando un ingeniero de Software Senior altamente 
-                            motivado y experimentado para unirse a nuestro equipo remoto. El candidato ideal
-                            tendrá una sólida formación en desarrollo de software y de alto rendimiento. Como
-                            ingeniero de Software Senior, usted será responsable de liderar proyectos de desarrollo,
-                            colaborar con equipos multifuncionales y garantizar la entrega de soluciones de alta calidad.
-                        </p>
-                    </section>
-                    <section>
-                        <h2>Responsibilidades</h2>
-                        <ul>
-                            <li>Diseñar, desarrollar y mantener aplicaciones web utilizando tecnologias modernas.</li>
-                            <li>Colaborar con equipos de producto y diseño para definir y entregar nuevas características.</li>
-                            <li>Escribir código limpio, eficiente y bien documentado.</li>
-                            <li>Realizar revisiones de código y propocionar retroalimentación constructiva a los miembros del equipo.</li>
-                        </ul>
-                    </section>
-                    <section>
-                        <h2>Requisitos</h2>
-                        <ul>
-                            <li>Licenciatura en infórmatica o campo relacionado.</li>
-                            <li>Mínimo de 5 años de experiencia en desarrollo de Software.</li>
-                            <li>Experiencia con Frameworks JavaScript (React, Angular, Vue.JS).</li>
-                            <li>Familiaridad con métodologias agiles y herramientas de control de versiones (GIT).</li>
-                        </ul>
-                    </section>
-                    <section>
-                        <h2>Acerca de la empresa</h2>
-                        <p>
-                            Tech Solutions Inc. es una empresa líder en tecnología dedicada a proporcionar soluciones innovadoras
-                            a clientes de todo el mundo. Nos enorgullecemos de nuestra cultura de trabajo colaborativa y nuestro
-                            compromiso con el desarrollo profesional continuo.
-                        </p>
-                    </section>
+                    
+                    <JobTitle title={job.titulo} company={job.empresa} location={job.ubicacion}/>
+                    
+                    {/* <JobDescription description={job.descripcion}/> */}
+                    <JobSection title="Descripción del puesto" content={'<p>' + job.content.description + '</p>'} className="job-description"/>
+                    <JobSection title="Responsabilidades" content={job.content.responsibilities}/>
+                    <JobSection title="Requisitos" content={job.content.requirements}/>
+                    <JobSection title="Acerca de la empresa" content={job.content.about}/>
                     <hr/>
-                    <div class="bottom-btn-wrapper" >
-                        <button id= "inferior-btn" class="btn-apply-large">Aplicar ahora</button>
+                    <div className="bottom-btn-wrapper" >
+                        <button id= "inferior-btn" className="btn-apply-large">Aplicar ahora</button>
                     </div>
                 </div>
-                {/* <button class="btn-apply-large">Aplicar ahora</button>  */}
             </article>
         </main>
     );
