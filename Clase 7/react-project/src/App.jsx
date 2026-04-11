@@ -2,6 +2,7 @@
 import { SearchPage } from "./pages/Search.jsx";
 import { HomePage } from "./pages/Home.jsx";
 import { Contact } from "./pages/Contact.jsx"
+import { Detail } from "./pages/Detail.jsx";
 
 //Componentes
 import { Routes , Route } from 'react-router';
@@ -18,6 +19,7 @@ function App() {
           <Route path="/" element={<HomePage />} />
           <Route path="/search" element={<SearchPage />} />
           <Route path="/contact" element={<Contact />} />
+          <Route path="/jobs/:id" element={<Detail />} />
         </Routes>
         <Footer />
     </>

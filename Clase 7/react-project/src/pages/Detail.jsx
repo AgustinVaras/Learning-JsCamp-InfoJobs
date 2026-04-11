@@ -57,7 +57,7 @@ export function Detail () {
                         <button id= "inferior-btn" class="btn-apply-large">Aplicar ahora</button>
                     </div>
                 </div>
-                <button class="btn-apply-large">Aplicar ahora</button> 
+                {/* <button class="btn-apply-large">Aplicar ahora</button>  */}
             </article>
         </main>
     );
