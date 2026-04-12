@@ -12,11 +12,14 @@ export function useJobFilters() {
         return params.get("text") || "";
     })());
     const [ clearCount, setClearCount ] = useState(0);
-    const [filters, setFilters, clearPersistedFilters] = usePersistedFilters( "jobFilters" ,{
-        technology: "",
-        location: "",
-        level: ""
-    });
+    const [filters, setFilters, clearPersistedFilters] = usePersistedFilters( "jobFilters" ,(()=> {
+        const params = new URLSearchParams(window.location.search);
+        return {
+            technology: params.get("technology") || "",
+            location: params.get("type") || "",
+            level: params.get("level") || ""
+        };
+    })());
 
 
     useEffect(() => {
