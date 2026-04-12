@@ -19,7 +19,7 @@ import { useRouter } from "../hooks/useRouter.jsx";
 const RESULTS_PER_PAGE = 5;
 
 export function SearchPage() {
-  const [ searcParams, setSearchParams ] = useSearchParams();
+  const [ searchParams, setSearchParams ] = useSearchParams();
 
   //Hooks calls
   const { navigateTo } = useRouter();
@@ -37,7 +37,7 @@ export function SearchPage() {
     clearCount,
     clearFilters,
     handleSearch 
-  } = useJobFilters();
+  } = useJobFilters(searchParams);
 
   const { 
     currentPage, 

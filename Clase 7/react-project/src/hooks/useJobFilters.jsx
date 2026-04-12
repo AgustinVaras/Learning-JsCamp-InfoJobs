@@ -4,16 +4,17 @@ import { useRouter } from "./useRouter.jsx";
 
 
 
-export function useJobFilters() {
+export function useJobFilters(searchParams) {
     const [ searchTerm, setSearchTerm, clearPersistedSearchTerm ] = usePersistedFilters("jobSearchTerm", (() => {
-        const params = new URLSearchParams(window.location.search);
-        return params.get("text") || "";
+        return searchParams.get("text") || "";
     })());
-    const [filters, setFilters, clearPersistedFilters] = usePersistedFilters( "jobFilters" ,{
-        technology: "",
-        location: "",
-        level: ""
-    });
+    const [filters, setFilters, clearPersistedFilters] = usePersistedFilters( "jobFilters" ,(() => {
+        return {
+            technology: searchParams.get("technology") || "",
+            location: searchParams.get("type") || "",
+            level: searchParams.get("level") || ""
+        };
+    })());
     const [ activeFilters, setActiveFilters ] = useState(false);
     const [ clearCount, setClearCount ] = useState(0);
     
