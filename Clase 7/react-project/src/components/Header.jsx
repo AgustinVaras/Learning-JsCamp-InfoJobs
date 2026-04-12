@@ -26,8 +26,8 @@ export function Header () {
                 <Link href="/contact">Contacto</Link>
             </nav>
             <div className={styles.header__actions}>
-                <Link className={styles.header__button} href="">Publicar un empleo</Link>
-                <Link className={styles.header__button} href="">Iniciar Sesión</Link>
+                {/* <Link className={styles.header__button} href="">Publicar un empleo</Link>
+                <Link className={styles.header__button} href="">Iniciar Sesión</Link> */}
             </div>
         </header>
     );
