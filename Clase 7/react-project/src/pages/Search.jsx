@@ -9,15 +9,18 @@ import { NoResults } from "../components/NoResults.jsx";
 // import jobsData from "../data/data.json";
 
 //Hooks
+import { useEffect } from "react";
+import { useSearchParams } from "react-router";
 import { useFetchJobs } from "../hooks/useFetchJobs.jsx";
 import { useJobFilters } from "../hooks/useJobFilters.jsx";
 import { usePagination } from "../hooks/usePagination.jsx";
 import { useRouter } from "../hooks/useRouter.jsx";
-import { useEffect } from "react";
 
 const RESULTS_PER_PAGE = 5;
 
 export function SearchPage() {
+  const [ searcParams, setSearchParams ] = useSearchParams();
+
   //Hooks calls
   const { navigateTo } = useRouter();
   const { 
@@ -59,19 +62,16 @@ export function SearchPage() {
     return params.toString();
   }
 
-  const buildUrlQuery = (searchTerm, filters) => {
-    const params = new URLSearchParams();
+  const updateUrl = (searchTerm, filters) => {
+    const params = {};
+    if (searchTerm) params.text =  searchTerm;
+    if (filters.technology) params.technology =  filters.technology;
+    if (filters.location) params.type =  filters.location;
+    if (filters.level) params.level =  filters.level;
 
-    if (searchTerm) params.append("text", searchTerm);
-    if (filters.technology) params.append("technology", filters.technology);
-    if (filters.location) params.append("type", filters.location);
-    if (filters.level) params.append("level", filters.level);
+    if ( currentPage > 1 ) params.page = currentPage;
 
-    if ( currentPage > 1 ) {
-      params.append('page', currentPage);
-    }
-
-    return params.toString();
+    setSearchParams(params);
   }
   //---------------------------------------------------------------------------------------------------------------
   //Effects
@@ -81,12 +81,7 @@ export function SearchPage() {
   }, [searchTerm, filters, currentPage]);
 
   useEffect(() => {
-    const newUrl = buildUrlQuery(searchTerm, filters) 
-      ? `${ window.location.pathname }?${buildUrlQuery(searchTerm, filters)}`
-      : window.location.pathname;
-
-    console.log("Navegando a:", newUrl);
-    navigateTo(newUrl);
+    updateUrl(searchTerm, filters);
   }, [searchTerm, filters, currentPage]);
   //---------------------------------------------------------------------------------------------------------------
   //Handles

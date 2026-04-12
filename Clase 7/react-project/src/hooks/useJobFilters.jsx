@@ -5,22 +5,18 @@ import { useRouter } from "./useRouter.jsx";
 
 
 export function useJobFilters() {
-    //Set de estados
-    const [ activeFilters, setActiveFilters ] = useState(false);
     const [ searchTerm, setSearchTerm, clearPersistedSearchTerm ] = usePersistedFilters("jobSearchTerm", (() => {
         const params = new URLSearchParams(window.location.search);
         return params.get("text") || "";
     })());
+    const [filters, setFilters, clearPersistedFilters] = usePersistedFilters( "jobFilters" ,{
+        technology: "",
+        location: "",
+        level: ""
+    });
+    const [ activeFilters, setActiveFilters ] = useState(false);
     const [ clearCount, setClearCount ] = useState(0);
-    const [filters, setFilters, clearPersistedFilters] = usePersistedFilters( "jobFilters" ,(()=> {
-        const params = new URLSearchParams(window.location.search);
-        return {
-            technology: params.get("technology") || "",
-            location: params.get("type") || "",
-            level: params.get("level") || ""
-        };
-    })());
-
+    
 
     useEffect(() => {
         setActiveFilters(validateActiveFilters());
