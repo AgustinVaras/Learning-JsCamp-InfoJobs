@@ -1,0 +1,9 @@
+.jobCard_title {
+    text-decoration: none;
+    color: inherit;
+
+    &:hover,
+    &:focus {
+        text-decoration: underline;
+    }
+}
