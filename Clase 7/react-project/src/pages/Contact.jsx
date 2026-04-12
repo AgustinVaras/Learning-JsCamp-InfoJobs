@@ -2,7 +2,7 @@ import { useContactForm } from "../hooks/useContactForm";
 
 import styles from "../components/Contact.module.css"
 
-export function Contact () {
+export default function Contact () {
     const { values, errors, isSubmited, handleChange, handleSubmit } = useContactForm();
 
     return (

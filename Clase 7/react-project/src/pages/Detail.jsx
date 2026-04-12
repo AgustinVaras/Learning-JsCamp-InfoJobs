@@ -32,7 +32,7 @@ export function JobSection ({ title, content, className = "" }) {
     )
 };
 
-export function Detail () {
+export default  function Detail () {
     const { id } = useParams();
     const { fetchJobWithId, loading, job, error } = useFetchJobs();
 

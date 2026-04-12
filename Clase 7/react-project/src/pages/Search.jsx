@@ -18,7 +18,7 @@ import { useRouter } from "../hooks/useRouter.jsx";
 
 const RESULTS_PER_PAGE = 5;
 
-export function SearchPage() {
+export default function SearchPage() {
   const [ searchParams, setSearchParams ] = useSearchParams();
 
   //Hooks calls

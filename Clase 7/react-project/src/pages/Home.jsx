@@ -1,7 +1,7 @@
 import styles from "../components/Home.module.css";
 import { useRouter } from "../hooks/useRouter.jsx";
 
-export function HomePage() {
+export default function HomePage() {
     const { navigateTo } = useRouter();
     const handleSubmit = (event) => {
         event.preventDefault();
