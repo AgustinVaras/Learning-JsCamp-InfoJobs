@@ -66,7 +66,7 @@ export default  function Detail () {
         <main>
             <nav className="job-route">
                 <div>
-                    <Link href="../search">Empleos </Link><p> / </p><a>{job.titulo}</a>
+                    <Link href="../search">Empleos</Link><p>/</p><a>{job.titulo}</a>
                 </div>
             </nav>
             <article className="job-detail">
