@@ -16,6 +16,8 @@ import { useJobFilters } from "../hooks/useJobFilters.jsx";
 import { usePagination } from "../hooks/usePagination.jsx";
 import { useRouter } from "../hooks/useRouter.jsx";
 
+import styles from "./Search.module.css";
+
 const RESULTS_PER_PAGE = 5;
 
 export default function SearchPage() {
@@ -96,7 +98,7 @@ export default function SearchPage() {
   }
 
   return (
-    <main className="search-page">
+    <main className={styles.searchPage}>
       <SearchBarSection 
         filters={filters}
         onSearch={handleSearchWithReset} 
@@ -105,7 +107,7 @@ export default function SearchPage() {
         onClearFilters={handleClearWithReset}
         searchTerm={searchTerm}
       />
-      <section className="search-results">
+      <section className={styles.searchResults}>
         {
           loading 
           ? (
@@ -120,7 +122,7 @@ export default function SearchPage() {
                 <NoResults/>
               ) : (
                 <>
-                  <h2 id="search-title">Resultados de búsqueda</h2>
+                  <h2 className={styles.searchTitle}>Resultados de búsqueda</h2>
                   <JobsListing jobs={jobsData}/>
                 </>
               )

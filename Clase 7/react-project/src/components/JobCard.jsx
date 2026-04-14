@@ -16,7 +16,7 @@ export function JobCard ({ job }) {
     const btnText = isApplied ? "Aplicado" : "Aplicar";
 
     return (
-        <article className="job-card">
+        <article className={styles.jobCard}>
             <div>
                 <h3>
                     <Link 

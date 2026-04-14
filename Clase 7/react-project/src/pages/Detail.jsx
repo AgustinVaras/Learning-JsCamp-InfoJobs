@@ -10,14 +10,16 @@ import { useFetchJobs } from "../hooks/useFetchJobs.jsx";
 import { Spinner } from "../components/Spinner.jsx";
 import { Link } from "../components/Link.jsx";
 
+import styles from "./Detail.module.css";
+
 export function JobTitle ({ title, company, location }) {
     return (
-        <section className="job-title">
+        <section className={styles.jobTitle}>
             <div>
                 <h1>{title}</h1>
                 <small>{company} - {location}</small>
             </div>
-            <button className="btn-apply-large">Aplicar ahora</button>
+            <button className={styles.btnApplyLarge}>Aplicar ahora</button>
         </section>
     );
 };
@@ -64,24 +66,24 @@ export default  function Detail () {
 
     return (
         <main>
-            <nav className="job-route">
+            <nav className={styles.jobRoute}>
                 <div>
                     <Link href="../search">Empleos</Link><p>/</p><a>{job.titulo}</a>
                 </div>
             </nav>
-            <article className="job-detail">
+            <article className={styles.jobDetail}>
                 <div>
                     
                     <JobTitle title={job.titulo} company={job.empresa} location={job.ubicacion}/>
                     
                     {/* <JobDescription description={job.descripcion}/> */}
-                    <JobSection title="Descripción del puesto" content={'<p>' + job.content.description + '</p>'} className="job-description"/>
+                    <JobSection title="Descripción del puesto" content={'<p>' + job.content.description + '</p>'} className={styles.jobDescription}/>
                     <JobSection title="Responsabilidades" content={job.content.responsibilities}/>
                     <JobSection title="Requisitos" content={job.content.requirements}/>
                     <JobSection title="Acerca de la empresa" content={job.content.about}/>
                     <hr/>
-                    <div className="bottom-btn-wrapper" >
-                        <button id= "inferior-btn" className="btn-apply-large">Aplicar ahora</button>
+                    <div className={styles.bottomBtnWrapper} >
+                        <button id= "inferior-btn" className={styles.btnApplyLarge}>Aplicar ahora</button>
                     </div>
                 </div>
             </article>
