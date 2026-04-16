@@ -1,0 +1,40 @@
+.jobCard {    
+    background: none;
+    box-shadow: none;
+    border-radius: 0;
+    /* border-bottom: 1px solid var(--border); */
+    margin: 0;
+    display: flex;
+    align-items: start;
+    gap: 1.5rem;
+    h3 {
+        font-weight: 600;
+        margin-bottom: 0;
+    }
+    
+    p {
+        margin-bottom: 0.5rem;
+        color: var(--text-secondary);
+    }
+
+    p > :nth-child(1) {
+        color: var(--text-muted);
+        font-size: 0.875rem;
+    }
+    &.filtered {
+        display: none;
+    }
+    &:not(:last-child) {
+        border-bottom: 2px solid var(--border);
+    }
+}
+
+.jobCard_title {
+    text-decoration: none;
+    color: inherit;
+
+    &:hover,
+    &:focus {
+        text-decoration: underline;
+    }
+}
